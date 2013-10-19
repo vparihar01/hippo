@@ -27,8 +27,7 @@ class CloudProvidersController < ApplicationController
   # GET /cloud_providers/new
   # GET /cloud_providers/new.json
   def new
-    @cloud_provider = CloudProvider.new
-
+    @cloud_provider = current_user.cloud_providers.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @cloud_provider }
@@ -44,8 +43,8 @@ class CloudProvidersController < ApplicationController
   # POST /cloud_providers.json
   def create
     @cloud_provider = params[:cloud_provider][:type].constantize.new(params[:cloud_provider])
-    puts "#######cloud_provider#####{@cloud_provider.inspect}"
-    puts "#######cloud_provider class #####{@cloud_provider.class}"
+    logger.info "#######cloud_provider#####{@cloud_provider.inspect}"
+    logger.info "#######cloud_provider class #####{@cloud_provider.class}"
     respond_to do |format|
       if @cloud_provider.save
         format.html { redirect_to @cloud_provider, notice: 'Cloud provider was successfully created.' }

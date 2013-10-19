@@ -1,10 +1,10 @@
 class CloudProvider < ActiveRecord::Base
-  
+
   #require 'instance_states.rb'
   #include InstanceStates
   #cattr_accessor :STATES
 
-  attr_accessible :key, :name, :provider, :secret, :type
+  attr_accessible :key, :name, :provider, :secret, :type, :user_id
   attr_reader :connect
 
   after_create :fetch_cloud_data

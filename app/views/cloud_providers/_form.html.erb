@@ -21,6 +21,7 @@
     <%= f.label :secret, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :secret, :class => 'text_field', :id => "secret" %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
     </div>
   </div>
 
