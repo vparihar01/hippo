@@ -34,9 +34,10 @@
       </a>
       <a class="brand" href="#"></a>
       <div class="nav-collapse pull-right">
+
         <ul class="nav">
           <% if current_user.present?  %>
-
+              <li> <%= link_to "Cloud Providers", cloud_providers_path %></li>
               <li> <%= link_to "Log Out", logout_path %></li>
           <% else%>
               <li> <%= link_to "Guest Login", sessions_path, :method => :post %></li>

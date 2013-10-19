@@ -1,0 +1,3 @@
+class Rackspace < CloudProvider
+
+end

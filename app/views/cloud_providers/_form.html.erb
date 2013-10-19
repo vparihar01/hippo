@@ -1,0 +1,48 @@
+<%= form_for @cloud_provider, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :key, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :key, :class => 'text_field', :id => "key" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field', :id => "user_name" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :provider, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :provider, :class => 'text_field', :id => "provider" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :secret, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :secret, :class => 'text_field', :id => "secret" %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                cloud_providers_path, :class => 'btn' %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+    var user_name = new LiveValidation('user_name');
+    user_name.add( Validate.Presence );
+
+    var key = new LiveValidation('key');
+    key.add( Validate.Presence );
+
+    var provider = new LiveValidation('provider');
+    provider.add( Validate.Presence );
+
+    var secret = new LiveValidation('secret');
+    secret.add( Validate.Presence );
+
+</script>
+

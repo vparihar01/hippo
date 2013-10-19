@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-
+  skip_before_filter :authorize!
 
   def create  # For Guest login Session
     @user = params[:user] ? User.find_or_initialize_by_email(params[:user][:email]) : User.new_guest
