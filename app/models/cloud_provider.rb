@@ -1,8 +1,9 @@
 class CloudProvider < ActiveRecord::Base
-
+  
   #require 'instance_states.rb'
   #include InstanceStates
   #cattr_accessor :STATES
+
   attr_accessible :key, :name, :provider, :secret, :type
   attr_reader :connect
 
@@ -36,6 +37,7 @@ class CloudProvider < ActiveRecord::Base
     end
     super
   end
+
   def fetch_cloud_data
     connect!
     puts "######connection###{@cloud_connection.inspect}#############"
@@ -45,4 +47,3 @@ class CloudProvider < ActiveRecord::Base
     self.save
   end
 end
-
