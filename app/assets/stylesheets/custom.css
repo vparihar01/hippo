@@ -1,12 +1,14 @@
 html {
     height: 100%;
 }
-.contentBg a:hover {
+.contentBg a:hover{
     background: #0061b1;
     text-decoration: none;
     color: #ffffff;
-
-
+}
+.contentBg a:visited {
+    text-decoration: none;
+    color: #ffffff;
 }
 body {
     background: url("bodyBg.jpg") repeat-x;
