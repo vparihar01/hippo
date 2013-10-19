@@ -1,20 +1,18 @@
 class SessionsController < ApplicationController
-  def new
 
-  end
 
-  def create
-    user = User.find_by_email(params[:email])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect_to root_url, notice: "Logged in!"
+  def create  # For Guest login Session
+    @user = params[:user] ? User.find_or_initialize_by_email(params[:user][:email]) : User.new_guest
+    if @user.save
+      current_user.move_to(@user) if current_user && current_user.guest?
+      session[:user_id] = @user.id
+      redirect_to root_url, :notice => "Successfuly login as Guest"
     else
-      flash.now.alert = "Email or password is invalid"
       render "new"
     end
   end
 
-  def destroy
+  def destroy #for Guest Logout
     session[:user_id] = nil
     redirect_to root_url, notice: "Logged out!"
   end
