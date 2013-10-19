@@ -6,6 +6,13 @@ Hippo::Application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
 resources :sessions
+
+resources :html do
+  collection do
+    get :sign_up
+    end
+
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -63,3 +70,4 @@ resources :sessions
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 end
+
