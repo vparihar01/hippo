@@ -3,4 +3,6 @@ class HtmlController < ApplicationController
   end
   def dashboard_none
   end
+  def dashboard
+  end
 end

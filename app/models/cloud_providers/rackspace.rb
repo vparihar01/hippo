@@ -23,8 +23,7 @@ class Rackspace < CloudProvider
     puts "######connection###{@cloud_connection.inspect}#############"
     instances_list=Instance.get_instances(@cloud_connection,self.id)
     puts "######instances_list###{instances_list.inspect}#############"
-    store_instance_list(instances_list,self.id)
-    #self.state = server_status
+    store_instance_list(instances_list,self.id) unless instances_list.empty?
     self.save
   end
 
@@ -50,5 +49,7 @@ class Rackspace < CloudProvider
     instance.save
     return instance
   end
+
+
 
 end

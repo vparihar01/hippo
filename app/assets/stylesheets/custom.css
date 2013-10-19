@@ -1,3 +1,19 @@
+@font-face {
+    font-family: 'elephantregular';
+    src: url('elephnt-webfont.eot');
+    src: url('elephnt-webfont.eot?#iefix') format('embedded-opentype'),
+    url('elephnt-webfont.woff') format('woff'),
+    url('elephnt-webfont.ttf') format('truetype'),
+    url('elephnt-webfont.svg#elephantregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+ul, ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 html {
     height: 100%;
 }
@@ -23,7 +39,7 @@ body {
     border: none;
 }
 .outer-div {
-    padding-bottom: 80px;
+    padding-bottom: 50px;
 }
 .brand {
     background: url("logo.png") no-repeat center;
@@ -127,4 +143,79 @@ footer p {
 .planeWrapper .customBtn {
     width: 180px;
     margin: 0 auto;
+}
+.contentBg1 > ul > li {
+    position: relative;
+    width: 250px;
+    height: 285px;
+    margin: 0 60px 30px 0;
+    float: left;
+}
+.contentBg1 ul li .content {
+    height: 253px;
+    background: #d4ebfe;
+    box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.4);
+    position: relative;
+    border: 3px solid #ffffff;
+    border-radius: 10px 10px 0 0;
+}
+.bottomBox {
+    background: url("boxBottomBg.png") no-repeat center bottom;
+    bottom: -28px;
+    height: 30px;
+    left: -9px;
+    position: absolute;
+    width: 261px;
+    z-index: 1000;
+}
+.contentBg1 li .boxHeader {
+    background: url("boxHeadingBg.jpg") repeat-x;
+    margin: 0;
+    padding: 0 0 0 5px;
+    border-radius: 10px 10px 0 0;
+}
+.contentBg1 li h4 {
+    color: #ffffff;
+    font-family: elephantregular;
+    font-size: 20px;
+    margin: 0;
+    padding: 10px 0 10px 5px;
+    min-height: 25px;
+}
+.rackRibbon {
+    background: url("rackspaceRibbon.png") no-repeat center;
+    width: 168px;
+    height: 171px;
+    position: absolute;
+    right: -48px;
+    top: -49px;
+}
+.contentBg1 li ul {
+    margin-bottom: 40px;
+}
+.contentBg1 li li {
+    font-size: 20px;
+    margin: 10px 0 10px 5px;
+    font-family: airal;
+}
+.numbers {
+    float: right;
+    margin-right: 15px;
+    font-weight: bold;
+}
+.iconsWrapper a {
+    width: 60px;
+    height: 50px;
+    display: block;
+    float: left;
+    margin:  0 10px;
+}
+.viewIcon {
+    background: url("viewIcon.png") no-repeat center;
+}
+.editIcon {
+    background: url("editIcon.png") no-repeat center;
+}
+.deleteIcon {
+    background: url("deleteIcon.png") no-repeat center;
 }

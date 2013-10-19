@@ -19,6 +19,7 @@ resources :html do
   collection do
     get :sign_up
     get :dashboard_none
+    get :dashboard
     end
   end
   root :to => 'homes#index'
