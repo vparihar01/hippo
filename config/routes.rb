@@ -18,6 +18,7 @@ resources :html do
   collection do
     get :sign_up
     get :dashboard_none
+    get :dashboard
     end
   end
   # The priority is based upon order of creation:
