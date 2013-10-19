@@ -154,6 +154,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   capistrano (~> 2.15)
   coffee-rails (~> 3.2.1)
+  delayed_job
   delayed_job_active_record
   fog
   jquery-rails
