@@ -29,6 +29,7 @@ gem "rails_config"
 gem "fog"
 gem 'capistrano', '~> 2.15'
 gem "rvm-capistrano"
+gem "delayed_job_active_record"
 
 
 # To use ActiveModel has_secure_password
