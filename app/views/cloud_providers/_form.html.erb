@@ -12,9 +12,9 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :provider, :class => 'control-label' %>
+    <%= f.label :Provider, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :provider, :class => 'text_field', :id => "provider" %>
+      <%= f.select :type, [CloudProvider.select_options],:class => 'select_field',  :id => "provider"%>
     </div>
   </div>
   <div class="control-group">
