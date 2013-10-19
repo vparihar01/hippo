@@ -1,0 +1,3 @@
+class Flavors
+
+end

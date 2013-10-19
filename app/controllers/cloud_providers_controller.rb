@@ -3,7 +3,9 @@ class CloudProvidersController < ApplicationController
   # GET /cloud_providers
   # GET /cloud_providers.json
   def index
-    @cloud_providers = CloudProvider.all
+    @cloud_providers = current_user.cloud_providers
+    logger.info("################################{@cloud_providers.inspect}")
+    logger.info("################################{@cloud_providers.present?.inspect}")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,8 +27,7 @@ class CloudProvidersController < ApplicationController
   # GET /cloud_providers/new
   # GET /cloud_providers/new.json
   def new
-    @cloud_provider = CloudProvider.new
-
+    @cloud_provider = current_user.cloud_providers.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @cloud_provider }
@@ -41,8 +42,9 @@ class CloudProvidersController < ApplicationController
   # POST /cloud_providers
   # POST /cloud_providers.json
   def create
-    @cloud_provider = CloudProvider.new(params[:cloud_provider])
-
+    @cloud_provider = params[:cloud_provider][:type].constantize.new(params[:cloud_provider])
+    logger.info "#######cloud_provider#####{@cloud_provider.inspect}"
+    logger.info "#######cloud_provider class #####{@cloud_provider.class}"
     respond_to do |format|
       if @cloud_provider.save
         format.html { redirect_to @cloud_provider, notice: 'Cloud provider was successfully created.' }

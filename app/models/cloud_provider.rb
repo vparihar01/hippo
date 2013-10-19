@@ -1,30 +1,21 @@
 class CloudProvider < ActiveRecord::Base
 
-  require 'instance_states.rb'
-  include InstanceStates
-  cattr_accessor :STATES
-  attr_accessible :key, :name, :provider, :secret, :type
+  #require 'instance_states.rb'
+  #include InstanceStates
+  #cattr_accessor :STATES
+
+  attr_accessible :key, :name, :provider, :secret, :type, :user_id
   attr_reader :connect
 
-  after_create :connect
+  after_create :fetch_cloud_data
 
   has_many :instances
+  belongs_to :user
 
-  def connect
-    @connection = nil
-    @connection = Fog::Compute.new(
-        {
-            :provider                 => self.type,
-            :rackspace_api_key        => self.key,
-            :rackspace_username    => self.secret
-        })
-    puts "######connection###{@connection.inspect}#############"
-    server_status=Instance.get_instances(@connection,self.type.downcase,self.id)
-    puts "######server_status###{server_status.inspect}#############"
-    #self.state = server_status
-    self.save
+  def connect!
+    @cloud_connection = nil
+    puts "I am in Super Class method connect!"
   end
-
 
   #To Make The Parent Class Aware of Its Children
 
@@ -41,5 +32,8 @@ class CloudProvider < ActiveRecord::Base
     end
     super
   end
+
 end
 
+require_dependency "cloud_providers/aws.rb"
+require_dependency "cloud_providers/rackspace.rb"
