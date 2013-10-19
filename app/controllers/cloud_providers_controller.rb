@@ -1,4 +1,5 @@
 class CloudProvidersController < ApplicationController
+
   # GET /cloud_providers
   # GET /cloud_providers.json
   def index

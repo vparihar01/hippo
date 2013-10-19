@@ -1,0 +1,56 @@
+body {
+    background: url("bodyBg.jpg") repeat-x;
+}
+.navbar-inner {
+    background: none;
+    border: none;
+}
+.brand {
+    background: url("logo.png") no-repeat center;
+    width: 120px;
+    height: 60px;
+}
+.navbar .nav>li>a{
+    background: url("cloud.png") no-repeat center;
+    width: 120px;
+    height: 60px;
+    line-height: 70px;
+    text-align: center;
+    color: #000
+}
+.contentBg {
+    background: #d4ebfe;
+    text-align: center;
+    width: 500px;
+    height: 260px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.1);
+    margin: 120px auto 0;
+    padding: 10px 0;
+}
+.form-horizontal {
+    text-align: left;
+    width: 420px;
+    margin: 0 auto;
+}
+.form-horizontal label {
+    font-size: 18px;
+    line-height: 30px;
+}
+.form-horizontal input[type ="text"] {
+    width: 190px;
+    border-radius: 50px;
+    height: 40px;
+    border: none;
+    padding: 0 10px 0 20px;
+}
+.contentBg a {
+    background: #4077a4;
+    border: 1px solid #025aa2;
+    padding: 7px 16px;
+    border-radius: 5px;
+    color: #ffffff;
+    margin: 0 auto;
+    display: block;
+    width: 50px;
+    text-align: center;
+}
