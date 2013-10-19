@@ -1,7 +1,7 @@
 require 'rvm/capistrano'
 require 'bundler/capistrano'
 set :rvm_type,              :system
-set :rvm_ruby_string, "ruby-1.9.3-p448@global"
+set :rvm_ruby_string, "ruby-1.9.3-p448"
 set :rvm_path,              "/usr/local/rvm"
 set :rvm_bin_path,      "#{rvm_path}/bin"
 set :rvm_lib_path,      "#{rvm_path}/lib" 
@@ -58,8 +58,8 @@ set :rails_env,                  "production"
  
 set :user,                       "root"
 set :password,                   "webonise6186"
-# set :runner,                     "root"
-# set :admin_runner,               "root"
+set :runner,                     "www-data"
+set :admin_runner,               "www-data"
 set :ssh_options, {:forward_agent => true}
 set :default_run_options ,{:pty => true}
 set :keep_releases, 2
@@ -78,7 +78,7 @@ set :keep_releases, 2
 # SCM Options
 set :scm,        :git
 set :repository, "git@github.com:/railsrumble/#{GITHUB_REPOSITORY_NAME}.git"
-set :branch,     "master"
+set :branch,     "develop"
  
 # Roles
 role :app, LINODE_SERVER_HOSTNAME
@@ -90,17 +90,17 @@ after 'deploy:update_code' do
   run "cp #{shared_path}/config/database.yml #{release_path}/config/database.yml"
  
   # Compile Assets
-  run "cd #{release_path}; RAILS_ENV=production #{rvm_path}/gems/#{rvm_ruby_string}/bundle exec rake assets:precompile"
+  run "cd #{release_path}; RAILS_ENV=production #{rvm_path}/gems/#{rvm_ruby_string}/bin/bundle exec rake assets:precompile"
 end
  
-# Restart Passenger
-deploy.task :restart, :roles => :app do
-  # Fix Permissions
-  sudo "chown -R www-data:www-data #{current_path}"
-  sudo "chown -R www-data:www-data #{latest_release}"
-  sudo "chown -R www-data:www-data #{shared_path}/bundle"
-  sudo "chown -R www-data:www-data #{shared_path}/log"
+# # Restart Passenger
+# deploy.task :restart, :roles => :app do
+#   # Fix Permissions
+#   sudo "chown -R www-data:www-data #{current_path}"
+#   sudo "chown -R www-data:www-data #{latest_release}"
+#   sudo "chown -R www-data:www-data #{shared_path}/bundle"
+#   sudo "chown -R www-data:www-data #{shared_path}/log"
  
   # Restart Application
-  run "touch #{current_path}/tmp/restart.txt"
-end
+#   run "touch #{current_path}/tmp/restart.txt"
+# end
