@@ -17,11 +17,6 @@ class CloudProvider < ActiveRecord::Base
     puts "I am in Super Class method connect!"
   end
 
-  def test
-    puts "In am in super class"
-  end
-
-
   #To Make The Parent Class Aware of Its Children
 
   def self.select_options
@@ -38,14 +33,6 @@ class CloudProvider < ActiveRecord::Base
     super
   end
 
-  def fetch_cloud_data
-    connect!
-    puts "######connection###{@cloud_connection.inspect}#############"
-    server_status=Instance.get_instances(@cloud_connection,self.type.downcase,self.id)
-    puts "######server_status###{server_status.inspect}#############"
-    #self.state = server_status
-    self.save
-  end
 end
 
 require_dependency "cloud_providers/aws.rb"

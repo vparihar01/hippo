@@ -7,11 +7,10 @@ class Instance < ActiveRecord::Base
   #
   # fetch instances
   #
-  def self.get_instances connections,provider,id
+  def self.get_instances connections,id
     puts "################ID #{id}"
     instance_list=connections.servers
-    store_instance_list(instance_list,provider,id)
-    return "Complete"
+    return instance_list
   end
 
   #
@@ -46,44 +45,6 @@ class Instance < ActiveRecord::Base
     end
   end
 
-
-
-  private
-
-  def self.store_instance_list instance_list,provider,id
-    instance_list.each do |server|
-      puts "_________________________"
-      puts server.inspect
-      puts "_________________________"
-      provider=="aws" ?  initialize_aws_instance(server,id) : initialize_rackspace_instance(server,id)
-    end
-  end
-
-  def self.initialize_rackspace_instance data,id
-    puts "################ID #{id}"
-    instance = Instance.new
-    instance.public_ip = data.addresses["public"]
-    instance.private_ip = data.addresses["private"]
-    instance.flavor_id = data.flavor_id
-    instance.name = data.name
-    instance.instance_id = data.id
-    instance.state = data.state
-    instance.cloud_provider_id = id
-    instance.save
-    return instance
-  end
-
-  def self.initialize_aws_instance data,id
-    instance = Instance.new
-    instance.public_ip = data.public_ip_address
-    instance.private_ip = data.private_ip_address
-    instance.flavor_id = data.flavor_id
-    instance.name = data.tags['Name']
-    instance.state = data.state
-    instance.instance_id = data.id
-    instance.cloud_provider_id = id
-    instance.save
-    return instance
-  end
+private
 
 end
