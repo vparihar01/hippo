@@ -158,6 +158,7 @@ DEPENDENCIES
   fog
   jquery-rails
   mysql2
+  nokogiri
   rails (= 3.2.13)
   rails_config
   rb-readline (~> 0.4.2)
