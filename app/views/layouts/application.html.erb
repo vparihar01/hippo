@@ -21,8 +21,10 @@
   <%= javascript_include_tag "application" %>
 </head>
 <body>
+<div class="bodyWrapper">
 
-<div class="navbar navbar-fixed-top">
+<div class="outer-div">
+<div class="navbar">
   <div class="navbar-inner">
     <div class="container">
       <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
@@ -30,34 +32,30 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a class="brand" href="#">Hippo</a>
-      <div class="container nav-collapse pull_right">
+      <a class="brand" href="#"></a>
+      <div class="nav-collapse pull-right">
         <ul class="nav">
           <% if current_user.present?  %>
 
               <li> <%= link_to "Log Out", logout_path %></li>
           <% else%>
-              <li> <%= link_to "Login as Guest", sessions_path, :method => :post %></li>
+              <li> <%= link_to "Guest Login", sessions_path, :method => :post %></li>
 
           <% end %>
         </ul>
       </div><!--/.nav-collapse -->
-    </div>
+    </div><!--/.navbar-inner -->
+  </div><!-- /nav -->
 
-   <div class="outer-div">
+
+
+   </div> <!-- outer-div ends -->
     <div class="container">
-        <div class="row">
-          <div class="span9">
-            <%= yield %>
-          </div>
-
-        </div><!--/row-->
-
-    <footer>
-      <p>&copy; Company 2013</p>
-    </footer>
-
-  </div> <!-- /container -->
-</div>
+        <%= yield %>
+    </div> <!-- /container -->
+      <footer>
+          <p>&copy; Company 2013</p>
+      </footer>
+</div><!-- body-wrapper ends -->
 </body>
 </html>

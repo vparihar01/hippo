@@ -11,8 +11,3 @@
  *= require_self
  *= require_tree .
  */
-
-.outer-div
-{
-    margin-top:120px;
-}
