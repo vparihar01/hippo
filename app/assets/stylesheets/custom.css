@@ -1,9 +1,20 @@
+html {
+    height: 100%;
+}
 body {
     background: url("bodyBg.jpg") repeat-x;
+    height: 100%;
+}
+.bodyWrapper {
+    min-height: 100%;
+    position: relative;
 }
 .navbar-inner {
     background: none;
     border: none;
+}
+.outer-div {
+    padding-bottom: 50px;
 }
 .brand {
     background: url("logo.png") no-repeat center;
@@ -53,4 +64,8 @@ body {
     display: block;
     width: 50px;
     text-align: center;
+}
+footer {
+    position: absolute;
+    bottom :0;
 }

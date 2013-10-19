@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20131019113940) do
+=======
+ActiveRecord::Schema.define(:version => 20131019115221) do
+>>>>>>> d85b9ccc4cdc447caabae26ec6e52394e32873c6
 
   create_table "cloud_providers", :force => true do |t|
     t.string   "key"
@@ -23,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20131019113940) do
     t.string   "type"
   end
 
+<<<<<<< HEAD
   create_table "instances", :force => true do |t|
     t.string   "title"
     t.string   "instance_id"
@@ -36,6 +41,24 @@ ActiveRecord::Schema.define(:version => 20131019113940) do
     t.datetime "updated_at",        :null => false
   end
 
+=======
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0, :null => false
+    t.integer  "attempts",   :default => 0, :null => false
+    t.text     "handler",                   :null => false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+>>>>>>> d85b9ccc4cdc447caabae26ec6e52394e32873c6
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"

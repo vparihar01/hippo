@@ -6,12 +6,13 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
+gem 'state_machine', '1.0.2'
 #gem  'sqlite3'
 #gem "therubyracer"
 #gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
 gem 'bcrypt-ruby', '~> 3.0.0'
-gem "rb-readline"
+gem 'rb-readline', '~> 0.4.2'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -27,6 +28,10 @@ end
 gem 'jquery-rails'
 gem "rails_config"
 gem "fog"
+gem 'capistrano', '~> 2.15'
+gem "rvm-capistrano"
+gem "delayed_job_active_record"
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
