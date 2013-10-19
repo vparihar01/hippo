@@ -1,5 +1,15 @@
+require 'rvm/capistrano'
 require 'bundler/capistrano'
- 
+set :rvm_type,              :system
+set :rvm_ruby_string, "ruby-1.9.3-p448@global"
+set :rvm_path,              "/usr/local/rvm"
+set :rvm_bin_path,      "#{rvm_path}/bin"
+set :rvm_lib_path,      "#{rvm_path}/lib" 
+set :default_environment, {
+  'GEM_HOME'        => "#{rvm_path}/gems/#{rvm_ruby_string}",
+  'GEM_PATH'        => "#{rvm_path}/gems/#{rvm_ruby_string}",
+  'BUNDLE_PATH'     => "#{rvm_path}/gems/#{rvm_ruby_string}"
+} 
 # This capistrano deployment recipe is made to work with the optional
 # StackScript provided to all Rails Rumble teams in their Linode dashboard.
 #
@@ -32,14 +42,14 @@ require 'bundler/capistrano'
 #############################################
  
 GITHUB_REPOSITORY_NAME = 'r13-team-303'
-LINODE_SERVER_HOSTNAME = 'weboapps.r13.railsrumble.com'
+LINODE_SERVER_HOSTNAME = '74.207.228.25'
  
 #############################################
 #############################################
  
 # General Options
  
-set :bundle_flags,               "--deployment"
+#set :bundle_flags,               "--deployment"
  
 set :application,                "railsrumble"
 set :deploy_to,                  "/var/www/apps/railsrumble"
@@ -47,8 +57,12 @@ set :normalize_asset_timestamps, false
 set :rails_env,                  "production"
  
 set :user,                       "root"
-set :runner,                     "www-data"
-set :admin_runner,               "www-data"
+set :password,                   "webonise6186"
+# set :runner,                     "root"
+# set :admin_runner,               "root"
+set :ssh_options, {:forward_agent => true}
+set :default_run_options ,{:pty => true}
+set :keep_releases, 2
  
 # Password-less Deploys (Optional)
 #
@@ -63,7 +77,7 @@ set :admin_runner,               "www-data"
  
 # SCM Options
 set :scm,        :git
-set :repository, "git@github.com:railsrumble/#{GITHUB_REPOSITORY_NAME}.git"
+set :repository, "git@github.com:/railsrumble/#{GITHUB_REPOSITORY_NAME}.git"
 set :branch,     "master"
  
 # Roles
@@ -76,7 +90,7 @@ after 'deploy:update_code' do
   run "cp #{shared_path}/config/database.yml #{release_path}/config/database.yml"
  
   # Compile Assets
-  run "cd #{release_path}; RAILS_ENV=production bundle exec rake assets:precompile"
+  run "cd #{release_path}; RAILS_ENV=production #{rvm_path}/gems/#{rvm_ruby_string}/bundle exec rake assets:precompile"
 end
  
 # Restart Passenger

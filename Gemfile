@@ -28,6 +28,7 @@ gem 'jquery-rails'
 gem "rails_config"
 gem "fog"
 gem 'capistrano', '~> 2.15'
+gem "rvm-capistrano"
 
 
 # To use ActiveModel has_secure_password
