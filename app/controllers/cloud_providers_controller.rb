@@ -41,8 +41,11 @@ class CloudProvidersController < ApplicationController
   # POST /cloud_providers
   # POST /cloud_providers.json
   def create
-    @cloud_provider = CloudProvider.new(params[:cloud_provider])
+    puts "#######cloud_provider#####{params[:cloud_provider][:type].inspect}"
 
+    @cloud_provider = params[:cloud_provider][:type].constantize.new(params[:cloud_provider])
+    puts "#######cloud_provider#####{@cloud_provider.inspect}"
+    puts "#######cloud_provider class #####{@cloud_provider.class}"
     respond_to do |format|
       if @cloud_provider.save
         format.html { redirect_to @cloud_provider, notice: 'Cloud provider was successfully created.' }

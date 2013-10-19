@@ -1,13 +1,14 @@
 class Aws < CloudProvider
-  attr_reader :connection
+  attr_reader :connect
 
   def connect!
-    @connection = nil
-    @connection = Fog::Compute.new(
+    puts "I am in Base Class method connect! racky"
+    @cloud_connection = nil
+    @cloud_connection = Fog::Compute.new(
         {
             :provider                 => 'AWS',
-            :rackspace_api_key        => self.key,
-            :rackspace_username    => self.secret
+            :aws_access_key_id        => self.key,
+            :aws_secret_access_key    => self.secret
         })
   end
 
