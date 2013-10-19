@@ -1,14 +1,21 @@
 class CloudProvider < ActiveRecord::Base
 
+<<<<<<< HEAD
   #require 'instance_states.rb'
   #include InstanceStates
   #cattr_accessor :STATES
+=======
+  # require 'instance_states.rb'
+  # include InstanceStates
+  # cattr_accessor :STATES
+>>>>>>> 5b419e2b090f3506a8c6f1e0edcacc5769409fc8
   attr_accessible :key, :name, :provider, :secret, :type
   attr_reader :connect
 
   after_create :fetch_cloud_data
 
   has_many :instances
+  belongs_to :user
 
   def connect!
     @cloud_connection = nil
@@ -35,6 +42,7 @@ class CloudProvider < ActiveRecord::Base
     end
     super
   end
+<<<<<<< HEAD
 
 
   def fetch_cloud_data
@@ -46,3 +54,7 @@ class CloudProvider < ActiveRecord::Base
     self.save
   end
 end
+=======
+end
+
+>>>>>>> 5b419e2b090f3506a8c6f1e0edcacc5769409fc8

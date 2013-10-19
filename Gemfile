@@ -7,7 +7,7 @@ gem 'rails', '3.2.13'
 
 gem 'mysql2'
 gem 'state_machine', '1.0.2'
-#gem  'sqlite3'
+# gem  'sqlite3'
 #gem "therubyracer"
 #gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
@@ -31,6 +31,9 @@ gem "fog"
 gem 'capistrano', '~> 2.15'
 gem "rvm-capistrano"
 gem "delayed_job_active_record"
+gem 'rb-readline', '~> 0.4.2'
+gem 'nokogiri'
+gem "delayed_job"
 
 
 # To use ActiveModel has_secure_password

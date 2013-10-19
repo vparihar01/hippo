@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20131019113940) do
-=======
-ActiveRecord::Schema.define(:version => 20131019115221) do
->>>>>>> d85b9ccc4cdc447caabae26ec6e52394e32873c6
+ActiveRecord::Schema.define(:version => 20131019131827) do
 
   create_table "cloud_providers", :force => true do |t|
     t.string   "key"
@@ -25,23 +21,9 @@ ActiveRecord::Schema.define(:version => 20131019115221) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "type"
+    t.integer  "user_id"
   end
 
-<<<<<<< HEAD
-  create_table "instances", :force => true do |t|
-    t.string   "title"
-    t.string   "instance_id"
-    t.string   "state"
-    t.string   "flavor_id"
-    t.string   "name"
-    t.string   "private_ip"
-    t.string   "public_ip"
-    t.string   "cloud_provider_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-  end
-
-=======
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0, :null => false
     t.integer  "attempts",   :default => 0, :null => false
@@ -58,13 +40,26 @@ ActiveRecord::Schema.define(:version => 20131019115221) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
->>>>>>> d85b9ccc4cdc447caabae26ec6e52394e32873c6
+  create_table "instances", :force => true do |t|
+    t.string   "title"
+    t.string   "instance_id"
+    t.string   "state"
+    t.string   "flavor_id"
+    t.string   "name"
+    t.string   "private_ip"
+    t.string   "public_ip"
+    t.string   "cloud_provider_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"
     t.boolean  "guest"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "name"
   end
 
 end
