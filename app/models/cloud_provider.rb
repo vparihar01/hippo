@@ -1,8 +1,8 @@
 class CloudProvider < ActiveRecord::Base
 
-  require 'instance_states.rb'
-  include InstanceStates
-  cattr_accessor :STATES
+  # require 'instance_states.rb'
+  # include InstanceStates
+  # cattr_accessor :STATES
   attr_accessible :key, :name, :provider, :secret, :type
   attr_reader :connect
 
