@@ -1,4 +1,7 @@
 Hippo::Application.routes.draw do
+  resources :cloud_providers
+
+
   resources :users
 
 
