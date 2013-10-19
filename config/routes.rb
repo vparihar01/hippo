@@ -13,8 +13,8 @@ resources :sessions
 resources :html do
   collection do
     get :sign_up
+    get :dashboard_none
     end
-
   end
   # The priority is based upon order of creation:
   # first created -> highest priority.
