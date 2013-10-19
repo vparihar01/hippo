@@ -55,35 +55,7 @@ class Instance < ActiveRecord::Base
       puts "_________________________"
       puts server.inspect
       puts "_________________________"
-      provider=="aws" ?  initialize_aws_instance(server,id) : initialize_rackspace_instance(server,id)
+      provider=="aws" ?  Aws.initialize_aws_instance(server,id) : Rackspace.initialize_rackspace_instance(server,id)
     end
   end
-
-  def self.initialize_rackspace_instance data,id
-    puts "################ID #{id}"
-    instance = Instance.new
-    instance.public_ip = data.addresses["public"]
-    instance.private_ip = data.addresses["private"]
-    instance.flavor_id = data.flavor_id
-    instance.name = data.name
-    instance.instance_id = data.id
-    instance.state = data.state
-    instance.cloud_provider_id = id
-    instance.save
-    return instance
-  end
-
-  def self.initialize_aws_instance data,id
-    instance = Instance.new
-    instance.public_ip = data.public_ip_address
-    instance.private_ip = data.private_ip_address
-    instance.flavor_id = data.flavor_id
-    instance.name = data.tags['Name']
-    instance.state = data.state
-    instance.instance_id = data.id
-    instance.cloud_provider_id = id
-    instance.save
-    return instance
-  end
-
 end

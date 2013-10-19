@@ -17,4 +17,18 @@ class Rackspace < CloudProvider
     puts "In am in base racky class"
   end
 
+ def self.initialize_rackspace_instance data,id
+  puts "################ID #{id}"
+  instance = Instance.new
+  instance.public_ip = data.addresses["public"]
+  instance.private_ip = data.addresses["private"]
+  instance.flavor_id = data.flavor_id
+  instance.name = data.name
+  instance.instance_id = data.id
+  instance.state = data.state
+  instance.cloud_provider_id = id
+  instance.save
+  return instance
+end
+
 end
