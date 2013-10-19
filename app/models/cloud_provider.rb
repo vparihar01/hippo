@@ -9,6 +9,7 @@ class CloudProvider < ActiveRecord::Base
   after_create :connect
 
   has_many :instances
+  belongs_to :user
 
   def connect
     @connection = nil

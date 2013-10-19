@@ -14,9 +14,11 @@ Hippo::Application.routes.draw do
 
   resources :sessions
 
-  resources :html do
-    collection do
-      get :sign_up
+
+resources :html do
+  collection do
+    get :sign_up
+    get :dashboard_none
     end
   end
   root :to => 'homes#index'

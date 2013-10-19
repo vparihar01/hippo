@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131019120032) do
+ActiveRecord::Schema.define(:version => 20131019131827) do
 
   create_table "cloud_providers", :force => true do |t|
     t.string   "key"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20131019120032) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "type"
+    t.integer  "user_id"
   end
 
   create_table "delayed_jobs", :force => true do |t|

@@ -3,7 +3,9 @@ class CloudProvidersController < ApplicationController
   # GET /cloud_providers
   # GET /cloud_providers.json
   def index
-    @cloud_providers = CloudProvider.all
+    @cloud_providers = current_user.cloud_providers
+    logger.info("################################{@cloud_providers.inspect}")
+    logger.info("################################{@cloud_providers.present?.inspect}")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,7 +43,7 @@ class CloudProvidersController < ApplicationController
   # POST /cloud_providers
   # POST /cloud_providers.json
   def create
-    @cloud_provider = CloudProvider.new(params[:cloud_provider])
+    @cloud_provider = current_user.cloud_providers.new(params[:cloud_provider])
 
     respond_to do |format|
       if @cloud_provider.save

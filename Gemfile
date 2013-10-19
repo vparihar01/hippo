@@ -7,7 +7,7 @@ gem 'rails', '3.2.13'
 
 gem 'mysql2'
 gem 'state_machine', '1.0.2'
-#gem  'sqlite3'
+# gem  'sqlite3'
 #gem "therubyracer"
 #gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
