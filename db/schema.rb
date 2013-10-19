@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131019115221) do
+ActiveRecord::Schema.define(:version => 20131019120032) do
 
   create_table "cloud_providers", :force => true do |t|
     t.string   "key"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20131019115221) do
     t.boolean  "guest"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "name"
   end
 
 end

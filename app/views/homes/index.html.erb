@@ -1,3 +1,28 @@
-<div class="container">
-  <%= link_to "Link Your Cloud Hosting",new_cloud_provider_path, :class => "btn btn-secondary btn-success"  if current_user.present? %>
+<!-- <div class="container">
+  <%#= link_to "Link Your Cloud Hosting",new_cloud_provider_path, :class => "btn btn-secondary btn-success"  if current_user.present? %>
+</div> -->
+
+<div class="contentBg">
+    <h3>Sign in as Guest</h3>
+    <%= form_tag sessions_path,{:method => :post} do %>
+    <div class="control-group">
+        <label class="control-label" for="inputEmail">Enter your name :</label>
+        <div class="controls">
+            <!-- <input type="text" id="inputEmail" placeholder="John"> -->
+            <%= text_field_tag 'user[name]',nil,id:"inputEmail",placeholder:"John"%>
+        </div>
+    </div>
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">Enter your email :</label>
+            <div class="controls">
+                <!-- <input type="text" id="inputEmail" placeholder="john@yopmail.com"> -->
+                <%= text_field_tag 'user[email]',nil,id:"inputEmail",placeholder:"john@yopmail.com"%>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                    <%= submit_tag 'Login' %>
+            </div>
+        </div>
+    <%end%>
 </div>

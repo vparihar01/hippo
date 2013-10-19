@@ -2,9 +2,8 @@ class SessionsController < ApplicationController
   skip_before_filter :authorize!
 
   def create  # For Guest login Session
-    @user = params[:user] ? User.find_or_initialize_by_email(params[:user][:email]) : User.new_guest
+    @user = params[:user] ? User.find_or_initialize_by_email_and_name(params[:user][:email],params[:user][:name]) : User.new_guest
     if @user.save
-      current_user.move_to(@user) if current_user && current_user.guest?
       session[:user_id] = @user.id
       redirect_to root_url, :notice => "Successfuly login as Guest"
     else

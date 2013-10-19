@@ -11,7 +11,6 @@ gem 'mysql2'
 #gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 #gem "twitter-bootstrap-rails"
 gem 'bcrypt-ruby', '~> 3.0.0'
-gem "rb-readline"
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -30,6 +29,7 @@ gem "fog"
 gem 'capistrano', '~> 2.15'
 gem "rvm-capistrano"
 gem "delayed_job_active_record"
+gem 'rb-readline', '~> 0.4.2'
 
 
 # To use ActiveModel has_secure_password
