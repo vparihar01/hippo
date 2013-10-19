@@ -6,11 +6,16 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
+gem 'state_machine', '1.0.2'
 #gem  'sqlite3'
 #gem "therubyracer"
 #gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-#gem "twitter-bootstrap-rails"
+gem "twitter-bootstrap-rails"
 gem 'bcrypt-ruby', '~> 3.0.0'
+<<<<<<< HEAD
+=======
+gem 'rb-readline', '~> 0.4.2'
+>>>>>>> 7ad114dbcea1feca7568a75b2342165db95f4f5a
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
