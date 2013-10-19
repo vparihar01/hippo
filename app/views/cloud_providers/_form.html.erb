@@ -14,7 +14,7 @@
   <div class="control-group">
     <%= f.label :Provider, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :type, [CloudProvider.select_options],:class => 'select_field',  :id => "provider"%>
+      <%= f.select(:type, options_for_select(CloudProvider.select_options)) %>
     </div>
   </div>
   <div class="control-group">
