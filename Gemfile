@@ -32,6 +32,7 @@ gem 'capistrano', '~> 2.15'
 gem "rvm-capistrano"
 gem "delayed_job_active_record"
 gem 'rb-readline', '~> 0.4.2'
+gem 'nokogiri'
 
 
 # To use ActiveModel has_secure_password
