@@ -8,7 +8,8 @@ class Rackspace < CloudProvider
         {
             :provider                 => 'Rackspace',
             :rackspace_api_key        => self.key,
-            :rackspace_username    => self.secret
+            :rackspace_username    => self.secret ,
+            :rackspace_region => :ord
         })
   end
 
