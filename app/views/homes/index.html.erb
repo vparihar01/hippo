@@ -9,7 +9,7 @@
         <label class="control-label" for="inputEmail">Enter your name :</label>
         <div class="controls">
             <!-- <input type="text" id="inputEmail" placeholder="John"> -->
-            <%= text_field_tag 'user[name]',nil,id:"inputEmail",placeholder:"John"%>
+            <%= text_field_tag 'user[name]',nil,id:"inputName",placeholder:"John"%>
         </div>
     </div>
         <div class="control-group">
@@ -26,3 +26,11 @@
         </div>
     <%end%>
 </div>
+
+<script type="text/javascript">
+    var user_name = new LiveValidation('inputName');
+    user_name.add( Validate.Presence );
+
+    var key = new LiveValidation('inputEmail');
+    key.add( Validate.Presence );
+</script>
