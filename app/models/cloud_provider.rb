@@ -43,3 +43,6 @@ class CloudProvider < ActiveRecord::Base
     self.save
   end
 end
+
+require_dependency "cloud_providers/aws.rb"
+require_dependency "cloud_providers/rackspace.rb"
