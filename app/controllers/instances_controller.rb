@@ -39,12 +39,9 @@ class InstancesController < ApplicationController
   end
 
   # GET /instances/1/edit
-  def edit
+  def resize_server
     @flavours = @provider.get_flavors
     puts "getting the flavors #{@flavours.inspect}"
-    @images = @provider.get_images
-    puts "getting the flavors #{@images.inspect}"
-    @instance = @provider.instances.new
     @instance = @provider.instances.find(params[:id])
   end
 
@@ -75,6 +72,7 @@ class InstancesController < ApplicationController
     end
     respond_to do |format|
       if @instance.update_attributes(params[:instance])
+        @instance.resize_instance(@provider.connect!)
         format.html { redirect_to @instance, notice: 'Instance was successfully updated.' }
         format.json { head :no_content }
       else

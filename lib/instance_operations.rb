@@ -1,4 +1,6 @@
 class InstanceOperations
+  require 'rufus/scheduler'
+
   def self.rackspace_create(cloud_connection,instance)
     # create server
     Rails.logger.info "Inside rackspace create #{cloud_connection}  image_id #{instance.image_id}  flavor_id #{instance.flavor_id}"
@@ -94,44 +96,65 @@ class InstanceOperations
 
   end
 ###########################################################################################
-  def resize_rackspace_instance(service,flavor_id)
-    servers = service.servers
-    #prompt user for server
-    server = select_server(servers)
-    # retrieve list of avaliable flavors
-    flavors = service.flavors
+  def self.resize_rackspace_instance(service,instance)
+    scheduler = Rufus::Scheduler.new
+
+
+    flavor = instance.flavor_id
+    puts "flavor   #{flavor.inspect}"
     # prompt user for flavor
-    selected_flavor = select_flavor(flavors, server)
     # resize server
-    server.resize selected_flavor.id
+    service.resize_server(instance.instance_id,flavor)
     puts "\n"
-    # wait for the resize process to start
-    server.wait_for { ready?('RESIZE') } 
     begin
       # Check every 5 seconds to see if server is in the VERIFY_RESIZE state. 
       # If the server has not been built in 5 minutes (600 seconds) an exception will be raised.
-      server.wait_for(1200, 5) do
-        print "."
-        STDOUT.flush
-        ready?('VERIFY_RESIZE', ['ACTIVE', 'ERROR'])
-      end
-      puts "[DONE]\n\n"      
+      instance.update_attributes(:state => "Resizing")
+      puts "[DONE]\n\n"
       puts "Server Has Been Successfully Resized!"
-      action = get_user_input "Press 'C' To Confirm Or 'R' to Revert Resize (R/C)"
-      case action.upcase
-      when 'C'
-        puts "\nConfirming Resize Operation"
-        server.confirm_resize
-      when 'R'
-        puts "\nReverting Resize Operation"
-        server.revert_resize
-      else
-        puts "\nUnrecognized Input. Exiting."
-      end      
+      scheduler.in '20m' do
+        service.confirm_resize_server(instance.instance_id)
+        instance.update_attributes(:state => "Active")
+
+      end
+
+
     rescue Fog::Errors::TimeoutError
-      puts "[TIMEOUT]\n\n"      
+      puts "[TIMEOUT]\n\n"
       puts "This server is currently #{server.progress}% into the resize process and is taking longer to complete than expected."
-      puts "You can continute to monitor the build process through the web console at https://mycloud.rackspace.com/\n\n" 
+      puts "You can continute to monitor the build process through the web console at https://mycloud.rackspace.com/\n\n"
     end
   end
+
+  def self.resize_aws__instance(service,instance)
+    scheduler = Rufus::Scheduler.new
+
+
+    flavor = instance.flavor_id
+    puts "flavor   #{flavor.inspect}"
+    # prompt user for flavor
+    # resize server
+    service.resize_server(instance.instance_id,flavor)
+    puts "\n"
+    begin
+      # Check every 5 seconds to see if server is in the VERIFY_RESIZE state.
+      # If the server has not been built in 5 minutes (600 seconds) an exception will be raised.
+      instance.update_attributes(:state => "Resizing")
+      puts "[DONE]\n\n"
+      puts "Server Has Been Successfully Resized!"
+      scheduler.in '20m' do
+        service.confirm_resize_server(instance.instance_id)
+        instance.update_attributes(:state => "Active")
+
+      end
+
+
+    rescue Fog::Errors::TimeoutError
+      puts "[TIMEOUT]\n\n"
+      puts "This server is currently #{server.progress}% into the resize process and is taking longer to complete than expected."
+      puts "You can continute to monitor the build process through the web console at https://mycloud.rackspace.com/\n\n"
+    end
+  end
+
+
 end
