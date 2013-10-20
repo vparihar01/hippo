@@ -45,7 +45,7 @@ body {
     border: none;
 }
 .outer-div {
-    padding-bottom: 50px;
+    padding-bottom: 90px;
 }
 .brand {
     background: url("logo.png") no-repeat center;
@@ -124,6 +124,20 @@ footer ul li {
     float: left;
     margin-right: 20px;
     line-height: 46px;
+}
+.links {
+    display: block;
+    width: 50px;
+    height: 50px
+}
+.facebook {
+    background: url("social_icon_srpit.png") no-repeat -342px 0;
+}
+.twitter {
+    background: url("social_icon_srpit.png") no-repeat -294px 0;
+}
+.linkedIn {
+    background: url("social_icon_srpit.png") no-repeat -246px 0;
 }
 .planeImg {
     background: url("planeBanner.png") no-repeat center right;
