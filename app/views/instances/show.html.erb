@@ -10,7 +10,19 @@
 
 
     <dt><strong><%= model_class.human_attribute_name(:flavor_id) %>:</strong></dt>
-    <dd><%= @instance.flavor_id %></dd>
+    <% if  @flavor.present? %>
+        <dd>Name: <%= @flavor.name %></dd>
+        <dd>Ram: <%= @flavor.ram %></dd>
+        <dd>Disk: <%= @flavor.disk%></dd>
+     <% else%>
+        <dd><%= @instance.flavor_id %></dd>
+     <% end %>
+    <dt><strong>Image: </strong></dt>
+    <% if  @image.present? %>
+    <dd><%= @image.name %></dd>
+    <% else %>
+        <dd><%= @instance.image_id %></dd>
+    <% end %>
     <dt><strong><%= model_class.human_attribute_name(:state) %>:</strong></dt>
     <dd> <div id="instance_state"><%= @instance.state %></div></dd>
     <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
@@ -20,9 +32,7 @@
     <dt><strong><%= model_class.human_attribute_name(:public_ip) %>:</strong></dt>
     <dd><%= @instance.public_ip %></dd>
   </dl>
-  <% if @instance.state.to_s.downcase == "building" %>
-
-
+  <% if @instance.state.to_s.downcase == "building" && @provider.type.to_s.downcase == "rackspace" %>
       <div class="progressWrapper">
         progress :
         <div class="progress progress-striped active">

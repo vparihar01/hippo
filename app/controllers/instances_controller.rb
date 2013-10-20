@@ -15,7 +15,8 @@ class InstancesController < ApplicationController
   # GET /instances/1.json
   def show
     @instance = Instance.find(params[:id])
-
+    @flavor = Flavor.find_by_flavor_id(@instance.flavor_id)
+    @image = Image.find_by_image_id(@instance.image_id)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @instance }

@@ -454,3 +454,9 @@ a i {
     padding: 4px 12px;
     text-shadow: none;
 }
+.viewInstance .dl-horizontal dt {
+    width: 140px;
+}
+.viewInstance .dl-horizontal dd {
+    width: 260px;
+}
