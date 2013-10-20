@@ -1,6 +1,7 @@
 <%- model_class = Instance -%>
 <div class="headerWrapper clearfix">
-<h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+
+<h1><%= @instances.last.cloud_provider.name.split(" ").first%>'s <%= " "%><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 
 <%= link_to "<i class='icon-arrow-left icon-white'></i> BACK".html_safe,
 cloud_providers_path, :class => 'customBtn back' %>
