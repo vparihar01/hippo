@@ -40,6 +40,8 @@ group :development do
   gem 'sextant', :git => 'git@github.com:vparihar01/sextant.git'
 end
 
+gem "rufus-scheduler"
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
