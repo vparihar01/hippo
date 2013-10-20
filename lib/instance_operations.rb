@@ -113,7 +113,7 @@ class InstanceOperations
       instance.update_attributes(:state => "Resizing")
       puts "[DONE]\n\n"
       puts "Server Has Been Successfully Resized!"
-      scheduler.in '20m' do
+      scheduler.in '10m' do
         service.confirm_resize_server(instance.instance_id)
         instance.update_attributes(:state => "Active")
 
