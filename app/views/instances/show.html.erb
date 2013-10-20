@@ -33,6 +33,7 @@
   <% end %>
   <div class="form-actions">
     <ul>
+      <% if @provider.type.to_s.downcase == "aws"%>
       <li>
         <%= link_to "Start",
                     instance_path(@instance),
@@ -47,6 +48,7 @@
                     :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                     :class => 'btn btn-danger' %>
       </li>
+      <% end %>
       <li>
         <%= link_to "Resize",
                     instance_path(@instance),
