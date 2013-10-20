@@ -13,6 +13,8 @@ $(document).ready(function(){
             // Animation complete.
         });
     });
+    $('.best_in_place').best_in_place();
+
 
         $('select').each(function(){
             var title = $(this).attr('title');

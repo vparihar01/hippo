@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131019131827) do
+ActiveRecord::Schema.define(:version => 20131020083416) do
 
   create_table "cloud_providers", :force => true do |t|
     t.string   "key"
@@ -40,6 +40,27 @@ ActiveRecord::Schema.define(:version => 20131019131827) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
+  create_table "flavors", :force => true do |t|
+    t.string   "name"
+    t.integer  "flavor_id"
+    t.string   "vcpus"
+    t.string   "ram"
+    t.string   "disk"
+    t.string   "flavour_type"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "images", :force => true do |t|
+    t.string   "name"
+    t.integer  "image_id"
+    t.string   "min_disk"
+    t.string   "min_ram"
+    t.string   "flavour_type"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "instances", :force => true do |t|
     t.string   "title"
     t.string   "instance_id"
@@ -51,6 +72,8 @@ ActiveRecord::Schema.define(:version => 20131019131827) do
     t.string   "cloud_provider_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.string   "image_id"
+    t.string   "progress"
   end
 
   create_table "users", :force => true do |t|

@@ -1,50 +1,50 @@
 <%= form_for @instance, :url =>  cloud_provider_instances_path(@provider),  :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :title, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :title, :class => 'text_field' %>
+    <div class="control-group">
+      <%= f.label :title, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :title, :class => 'text_field' %>
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :instance_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :instance_id, :class => 'text_field' %>
+    <div class="control-group">
+      <%= f.label :instance_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :instance_id, :class => 'text_field' %>
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :state, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :state, :class => 'text_field' %>
+    <div class="control-group">
+      <%= f.label :name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :name, :class => 'text_field' %>
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :flavor_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :flavor_id, :class => 'text_field' %>
+    <div class="control-group">
+      <%= f.label :private_ip, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :private_ip, :class => 'text_field' %>
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
+    <div class="control-group">
+      <%= f.label :public_ip, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :public_ip, :class => 'text_field' %>
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :private_ip, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :private_ip, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :public_ip, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :public_ip, :class => 'text_field' %>
-    </div>
-  </div>
 
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                instances_path, :class => 'btn' %>
-  </div>
+    <div class="control-group">
+      <% @flavours.each do |flavor| %>
+         <%= f.radio_button :flavor_id , flavor.id%> <%= flavor.name %> <%= flavor.ram %>
+      <%end  %>
+
+    </div>
+    <div class="control-group">
+      <% @images.each do |image| %>
+         <%= f.radio_button :image_id , image.id%> <%= image.name %>
+      <%end  %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  instances_path, :class => 'btn' %>
+    </div>
 <% end %>

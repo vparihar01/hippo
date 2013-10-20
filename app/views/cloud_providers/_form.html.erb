@@ -16,7 +16,8 @@
   <div class="control-group">
     <%= f.label :Provider, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select(:type, options_for_select(CloudProvider.select_options),:class=> 'cstSelList')  %>
+      <%= f.select(:type, options_for_select(CloudProvider.select_options,@cloud_provider.type), {:prompt => "Select Provider", :id => "cloud_provider_type",:class=> 'cstSelList'}) %>
+      <%= f.select(:type, options_for_select(CloudProvider.select_options,@cloud_provider.type), {:prompt => "Select Provider", :id => "cloud_provider_type",:class=> 'cstSelList'}) %>
     </div>
   </div>
   <div class="control-group">
@@ -40,11 +41,12 @@
     var key = new LiveValidation('key');
     key.add( Validate.Presence );
 
-    var provider = new LiveValidation('provider');
-    provider.add( Validate.Presence );
-
     var secret = new LiveValidation('secret');
     secret.add( Validate.Presence );
+
+    var cloud_provider_type = new LiveValidation('cloud_provider_type');
+    cloud_provider_type.add( Validate.Presence );
+
 
 </script>
 
