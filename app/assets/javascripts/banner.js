@@ -44,7 +44,7 @@
       this.banner.id = "rumble2013";
       this.text = document.createElement("span");
       this.banner.appendChild(this.text);
-      return this.text.innerHTML = "You can <a href=\"http://railsrumble.com/?view=" + document.location + "\">vote for us</a>\nin the <a href=\"http://railsrumble.com\">2013 Rails Rumble</a>!";
+      return this.text.innerHTML = "You can <a href=\"http://railsrumble.com/?view=" + document.location + "\" target=\"_blank\">vote for us</a>\nin the <a href=\"http://railsrumble.com\" target=\"_blank\">2013 Rails Rumble</a>!";
     },
     styleBanner: function() {
       var link, _i, _len, _ref;
