@@ -17,7 +17,7 @@ ul, ol {
 html {
     height: 100%;
 }
-.contentBg a:hover{
+.customBtn:hover{
     background: #0061b1;
     text-decoration: none;
     color: #ffffff;
@@ -78,6 +78,7 @@ body {
     height: 40px;
     border: none;
     padding: 0 10px 0 20px;
+    line-height: 40px;
 }
 .contentBg .form-horizontal input[type = "submit"] {
     background: #4077a4;
@@ -151,7 +152,7 @@ footer p {
     position: relative;
     width: 250px;
     height: 285px;
-    margin: 0 31px 30px 31px;
+    margin: 0 31px 60px 31px;
     float: left;
 }
 .dashboardWrapper ul li .content {
@@ -180,10 +181,12 @@ footer p {
 .dashboardWrapper li h4 {
     color: #ffffff;
     font-family: elephantregular;
-    font-size: 20px;
+    font-size: 17px;
     margin: 0;
     padding: 10px 0 10px 5px;
     min-height: 25px;
+    font-weight: normal;
+    width: 190px;
 }
 .rackspaceRibbon {
     background: url("rackspaceRibbon.png") no-repeat center;
@@ -193,7 +196,7 @@ footer p {
     right: -48px;
     top: -49px;
 }
-.aws {
+.awsRibbon {
     background: url("awsRibbon.png") no-repeat center;
     width: 168px;
     height: 171px;
@@ -231,8 +234,76 @@ footer p {
 .deleteIcon {
     background: url("deleteIcon.png") no-repeat center;
 }
-.dashboardWrapper h1{
+.headerWrapper {
+    margin-bottom: 50px;
+}
+.headerWrapper h1{
     font-size: 32px;
     font-family: elephantregular;
     text-align: center;
+    float: left;
+    border: none;
+}
+.headerWrapper .customBtn {
+    float: right;
+    margin-top: 10px;
+}
+/* select box custom css*/
+.selListWrap{
+    margin: 12px 0 15px;
+    position: relative;
+}
+select.cstSelList {
+    position: relative;
+    width: 160px;
+    height: 33px;
+    line-height: 24px;
+    z-index: 10;
+}
+span.selText {
+    float:right;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 223px;
+    height: 44px;
+    text-indent: 10px;
+    font-family: arial;
+    font-size: 14px;
+    color: #000000;
+    cursor: default;
+    background: url("selectBg.png") no-repeat scroll 0 0 transparent;
+    z-index: 1;
+    line-height: 40px;
+    padding-left: 10px;
+}
+/* select box css ends*/
+.controls {
+    position: relative;
+}
+select {
+    position: relative;
+}
+.newCloud {
+    background: url("cartoon.png") no-repeat left bottom;
+}
+.form-actions {
+    background-color: #d4ebfe;
+}
+.back {
+    float: right;
+    margin-top: 10px;
+    width: 57px;
+    text-align: right;
+    height: 15px;
+    line-height: 15px;
+}
+.LV_validation_message {
+    display: none;
+}
+input.LV_invalid_field {
+    box-shadow: 0px 0px 8px 0px red;
+}
+.form-horizontal .control-label {
+    cursor: auto
 }
