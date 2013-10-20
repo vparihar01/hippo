@@ -182,5 +182,9 @@ class InstanceOperations
     end
   end
 
+  def self.terminate_instances(cloud_connection, instance)
+    cloud_connection.servers.get(instance.instance_id).destroy
+  end
+
 
 end

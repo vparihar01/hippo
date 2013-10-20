@@ -78,8 +78,8 @@
       </li>
 
       <li>
-        <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                    instance_path(@instance),
+        <%= link_to "Terminated",
+                    cloud_provider_instance_path(@provider,@instance),
                     :method => 'delete',
                     :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                     :class => 'btn btn-danger disableClass' %>

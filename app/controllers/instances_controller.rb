@@ -86,12 +86,9 @@ class InstancesController < ApplicationController
   # DELETE /instances/1.json
   def destroy
     @instance = @provider.instances.find(params[:id])
+    InstanceOperations.terminate_instances(@provider.connect!, @instance)
     @instance.destroy
-
-    respond_to do |format|
-      format.html { redirect_to instances_url }
-      format.json { head :no_content }
-    end
+    redirect_to cloud_provider_path(@provider)   
   end
 
   def instance_status
