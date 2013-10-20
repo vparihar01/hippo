@@ -251,6 +251,7 @@ footer p {
 .headerWrapper .customBtn {
     float: right;
     margin-top: 10px;
+    text-shadow: none;
 }
 /* select box custom css*/
 .selListWrap{
@@ -301,9 +302,10 @@ select {
     margin-top: 10px;
     width: 57px;
     text-align: right;
-    height: 15px;
-    line-height: 15px;
+    height: 20px;
+    line-height: 20px;
     font-size: 14px;
+    margin-left: 15px;
 }
 .LV_validation_message {
     display: none;
@@ -337,4 +339,70 @@ input.LV_invalid_field {
 }
 .dl-horizontal dd {
     letter-spacing: 1px;
+}
+.alert-success {
+    color: #fff;
+    background-color: #7dc17e;
+    border-color: #d6e9c6;
+}
+.listHeading li{
+    font-weight: bold;
+    float: left;
+}
+.listId {
+    width: 30px;
+}
+.instanceId {
+    width: 90px;
+}
+.listState {
+    width: 70px;
+}
+.listFlavour {
+    width: 70px;
+}
+.listName {
+    width: 95px;
+}
+.listPrivateIP {
+    width: 115px;
+}
+.listPublicIP {
+    width: 120px;
+}
+.listDetails {
+    width: 250px;
+}
+.listAction {
+    width: 100px;
+}
+.cloudList li{
+    font-weight: bold;
+    float: left;
+    padding-top: 22px;
+    min-height: 40px;
+    cursor: pointer;
+    text-align: center;
+}
+.cloudList ul {
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+}
+.cloudList ul:hover {
+    min-height: 60px;
+    border-radius: 5px;
+    background: #0061b1;
+    color: #ffffff;
+}
+.cloudList .listHeading {
+    box-shadow: none;
+}
+.cloudList .listHeading li{
+    min-height: 0;
+    box-shadow: none;
+}
+.cloudList .listHeading:hover {
+    min-height: 0;
+    border-radius: 5px;
+    background: none;
+    color: #000000;
 }
