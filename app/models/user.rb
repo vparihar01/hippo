@@ -24,4 +24,12 @@ class User < ActiveRecord::Base
     guest ? "Guest" : name
   end
 
+  def update_instances
+    self.cloud_providers.each do |c|
+      cloud_connection = c.connect!
+      instances = c.fetch_instances
+      InstanceOperations.compare_instance_data(cloud_connection,instances)
+    end
+  end
+
 end

@@ -82,4 +82,8 @@ class Rackspace < CloudProvider
     return images
   end
 
+  def fetch_instances
+    self.instances
+  end
+
 end

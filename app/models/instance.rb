@@ -27,7 +27,6 @@ class Instance < ActiveRecord::Base
   # fetch instances
   #
   def self.get_instances connections,id
-    puts "################ID #{id}"
     instance_list=connections.servers
     return instance_list
   end
@@ -35,6 +34,8 @@ class Instance < ActiveRecord::Base
   #
   # stopping / starting
   #
+
+
 
   def stop_instance(instance)
     if instance

@@ -182,5 +182,42 @@ class InstanceOperations
     end
   end
 
+  def self.compare_instance_data(cloud_connection,instances)
+    instance_list = Instance.get_instances(cloud_connection,instances)
+    server_instance_list = []
+    used_hippo_instance_list = []
+    unused_hippo_instance_list = []
+    unused_cloud_instance_list = []
+    used_cloud_instance_list = []
+    server_instance_list = instances
+    puts "##### #{server_instance_list.class}  #{server_instance_list}"
+    puts "###instance_list## #{instance_list}"
+    instance_list.each do |instance|
+      puts "######### instance compare_instance_data #{instance} "
+      server_instance_list.each do |j|
+        if instance.id == j.instance_id
+          puts "gotcha we matched the method"
+          used_hippo_instance_list << server_instance_list
+          used_cloud_instance_list << instance
+          puts "----- used_hippo_instance_list:#{used_hippo_instance_list}"
+          puts "----- used_cloud_instance_list:#{used_cloud_instance_list}"
+        else
+          puts "no instance find inside"
+          unused_hippo_instance_list << server_instance_list
+          unused_cloud_instance_list << instance
+          puts "----- unused_hippo_instance_list:#{unused_hippo_instance_list}"
+          puts "----- unused_cloud_instance_list:#{unused_cloud_instance_list}"
+        end
+      end
+    end
+  end
+
+  def instance_matched
+
+  end
+
+  def delete_unused_instance_list
+
+  end
 
 end
