@@ -16,8 +16,7 @@
   <div class="control-group">
     <%= f.label :Provider, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select(:type, options_for_select(CloudProvider.select_options,@cloud_provider.type), {:prompt => "Select Provider", :id => "cloud_provider_type",:class=> 'cstSelList'}) %>
-      <%= f.select(:type, options_for_select(CloudProvider.select_options,@cloud_provider.type), {:prompt => "Select Provider", :id => "cloud_provider_type",:class=> 'cstSelList'}) %>
+      <%= f.select(:type, options_for_select(CloudProvider.select_options,@cloud_provider.type), {:prompt => "Select Provider", :id => "cloud_provider_type"}) %>
     </div>
   </div>
   <div class="control-group">
