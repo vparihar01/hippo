@@ -36,6 +36,9 @@ gem 'rb-readline', '~> 0.4.2'
 gem 'nokogiri'
 gem "delayed_job"
 gem "daemons"
+group :development do
+  gem 'sextant', :git => 'git@github.com:vparihar01/sextant.git'
+end
 
 
 # To use ActiveModel has_secure_password

@@ -1,7 +1,7 @@
 class InstancesController < ApplicationController
   # GET /instances
   # GET /instances.json
-  before_filter :find_provider
+  before_filter :find_provider, :unless => proc{ request.xhr?   }
   def index
     @instances = @provider.instances.all
 
@@ -54,9 +54,9 @@ class InstancesController < ApplicationController
     @instance.state = "Building"
     respond_to do |format|
       if @instance.save
-        @instance.delay.create_instance(@provider.connect!)
+        @instance.create_instance(@provider.connect!)
 
-        format.html { redirect_to @instance, notice: 'Instance was successfully created.' }
+        format.html { redirect_to cloud_provider_instance_path(@provider,@instance), notice: 'Instance was successfully created.' }
         format.json { render json: @instance, status: :created, location: @instance }
       else
         format.html { render action: "new" }
@@ -96,9 +96,17 @@ class InstancesController < ApplicationController
     end
   end
 
+  def instance_status
+  @instance = Instance.find(params[:id])
+  respond_to do | format|
+      format.json { render :json => {:state => @instance.state, :progress => @instance.progress}}
+    end
+  end
+
   private
 
   def find_provider
     @provider = current_user.cloud_providers.find_by_id(params[:cloud_provider_id])
+    redirect_to root_path, :alert => "Sorry you are restricted to use this instance !!!" and return unless @provider.present?
   end
 end

@@ -65,9 +65,17 @@ class Instance < ActiveRecord::Base
   end
 
   def create_instance(cloud_connection)
-    InstanceOperations.rackspace_create(cloud_connection,self)
+    logger.info("INside the thread ##############################")
+    thread = Thread.new do
+      if self.cloud_provider.type.include?("Aws")
+        InstanceOperations.aws_create(cloud_connection,self)
+      else
+        InstanceOperations.rackspace_create(cloud_connection,self)
+      end
+    end
+    thread.run
   end
 
-private
+  private
 
 end

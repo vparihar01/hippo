@@ -58,4 +58,19 @@ class Aws < CloudProvider
     return instance
   end
 
+  def get_flavors
+    flavors = Flavor.where(:flavour_type => "aws")
+    unless flavors.present?
+      puts "#### i didn't get the flavours of my choices so i creating my own ####"
+      Flavor.create_flavor_for_rackspace connect! ,"aws"
+      return Flavor.where(:flavour_type => "aws")
+    end
+    return flavors
+  end
+
+  def get_images
+    images = Image.where(:flavour_type => "aws")
+    return images
+  end
+
 end
