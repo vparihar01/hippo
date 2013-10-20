@@ -383,6 +383,8 @@ input.LV_invalid_field {
     min-height: 40px;
     cursor: pointer;
     text-align: center;
+    word-break: break-word;
+    margin-bottom: 20px;
 }
 .cloudList ul {
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
