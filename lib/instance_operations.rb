@@ -1,6 +1,4 @@
 class InstanceOperations
-
-
   def self.rackspace_create(cloud_connection,instance)
     # create server
     puts "Inside rackspace create #{cloud_connection}  image_id #{instance.image_id}  flavor_id #{instance.flavor_id}"

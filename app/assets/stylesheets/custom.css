@@ -9,6 +9,9 @@
     font-style: normal;
 
 }
+h1 {
+    font-family: elephantregular;
+}
 ul, ol {
     list-style: none;
     margin: 0;
@@ -188,7 +191,7 @@ footer p {
     font-weight: normal;
     width: 190px;
 }
-.rackspaceRibbon {
+.rackRibbon {
     background: url("rackspaceRibbon.png") no-repeat center;
     width: 168px;
     height: 171px;
@@ -196,7 +199,7 @@ footer p {
     right: -48px;
     top: -49px;
 }
-.awsRibbon {
+.aws {
     background: url("awsRibbon.png") no-repeat center;
     width: 168px;
     height: 171px;
@@ -236,6 +239,7 @@ footer p {
 }
 .headerWrapper {
     margin-bottom: 50px;
+    border-bottom: 1px solid #4077a4;
 }
 .headerWrapper h1{
     font-size: 32px;
@@ -320,4 +324,17 @@ input.LV_invalid_field {
 }
 .newCloud .controls {
     position: relative;
+}
+.viewProvider {
+    background: url("viewCloud.png") no-repeat right bottom;
+    min-height: 470px;
+}
+.viewProvider .form-horizontal {
+    margin-left: 0;
+}
+.viewProvider .controls {
+    margin-left: 160px;
+}
+.dl-horizontal dd {
+    letter-spacing: 1px;
 }
