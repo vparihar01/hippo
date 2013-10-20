@@ -158,27 +158,11 @@ class InstanceOperations
   end
 
   def self.stop_aws(instance,cloud_connection)
-    scheduler = Rufus::Scheduler.new
     cloud_connection.stop_instances(instance.instance_id)
-    scheduler.in '2m' do
-      if instance.cloud_provider.type.include?("Aws")
-        instance.update_attributes(:state => "running")
-      else
-        instance.update_attributes(:state => "Active")
-      end
-    end
   end
 
   def self.start_aws(instance,cloud_connection)
-    scheduler = Rufus::Scheduler.new
     cloud_connection.start_instances(instance.instance_id)
-    scheduler.in '2m' do
-      if instance.cloud_provider.type.include?("Aws")
-        instance.update_attributes(:state => "running")
-      else
-        instance.update_attributes(:state => "Active")
-      end
-    end
   end
 
   def self.reboot_instances(cloud_connection, instance)
