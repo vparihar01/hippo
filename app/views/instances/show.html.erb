@@ -17,10 +17,10 @@
   <dt><strong><%= model_class.human_attribute_name(:public_ip) %>:</strong></dt>
   <dd><%= @instance.public_ip %></dd>
 </dl>
-<% if @instance.state.to_s == "building" %>
+<% if @instance.state.to_s.downcase == "building" %>
 progress :
 <div class="progress progress-striped active">
-  <div class="bar" style="width: <%= @state.progress%>%;"></div>
+  <div class="bar" style="width: <%= @instance.progress%>%;"></div>
 </div>
 <% end %>
 <div class="form-actions">
@@ -49,6 +49,7 @@ progress :
 
                 complete:function(resp,type)
                 {
+
                   response = JSON.parse(resp.responseText);
                   $("#instance_state").text(response.state);
                   $(".bar").css("width",response.progress +"%");
