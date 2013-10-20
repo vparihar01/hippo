@@ -47,7 +47,7 @@ class CloudProvidersController < ApplicationController
     logger.info "#######cloud_provider class #####{@cloud_provider.class}"
     respond_to do |format|
       if @cloud_provider.save
-        format.html { redirect_to @cloud_provider, notice: 'Cloud provider was successfully created.' }
+        format.html { redirect_to cloud_provider_instances_path(@cloud_provider), notice: 'Cloud provider was successfully created.' }
         format.json { render json: @cloud_provider, status: :created, location: @cloud_provider }
       else
         format.html { render action: "new" }
