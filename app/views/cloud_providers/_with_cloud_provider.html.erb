@@ -1,5 +1,13 @@
 <div class="dashboardWrapper">
-    <h1>Providers</h1>
+    <div class="headerWrapper clearfix">
+        <h1>Providers</h1>
+
+        <%= link_to t('.new', :default => t("helpers.links.Link your cloud")),
+        new_cloud_provider_path,
+        :class => 'customBtn' %>
+
+
+    </div>
 <ul>
   <% cloud_providers.each do |cp|%>
     <li>
@@ -17,10 +25,7 @@
                     <span>Active instances :</span>
                     <span class="numbers"><%= cp.type == "Aws" ? cp.instances.where(state: "running").count : cp.instances.where(state: "ACTIVE").count%></span>
                 </li>
-                <li>
-                    <span>Stopped instances :</span>
-                    <span class="numbers">5</span>
-                </li>
+
             </ul>
             <div class="iconsWrapper">
                 <%= link_to '',cloud_provider_instances_path(cp), :class => 'viewIcon' %>
@@ -37,8 +42,4 @@
     </li>
     <% end %>
 </ul>
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_cloud_provider_path,
-            :class => 'btn btn-primary' %>
-
 </div>

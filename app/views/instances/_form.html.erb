@@ -2,49 +2,65 @@
     <div class="control-group">
       <%= f.label :title, :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_field :title, :value => @instance.title || "Untitled", :class => 'text_field' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :instance_id, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :instance_id, :class => 'text_field' %>
+        <%= f.text_field :title, :value => @instance.title || "Untitled", :class => 'text_field', :id => "title" %>
       </div>
     </div>
     <div class="control-group">
       <%= f.label :name, :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_field :name, :class => 'text_field' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :private_ip, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :private_ip, :class => 'text_field' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :public_ip, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :public_ip, :class => 'text_field' %>
+        <%= f.text_field :name, :class => 'text_field', :id => "user_name" %>
       </div>
     </div>
 
-    <div class="control-group">
-      <% @flavours.each do |flavor| %>
-         <%= f.radio_button :flavor_id , flavor.flavor_id%> <%= flavor.name %> <%= flavor.ram %>
-      <%end  %>
 
-    </div>
-    <div class="control-group">
+<div class="imageWrapper clearfix">
+<div class="control-group">
+    <label class="control-label">Select your flavour</label>
+    <div class="controls">
+    <ul class="flavorList clearfix">
+              <% @flavours.each do |flavor| %>
+        <li>
+                 <%= f.radio_button :flavor_id , flavor.flavor_id%> <%= flavor.name %> <%= flavor.ram %>
+        </li>
+              <%end  %>
+
+    </ul>
+</div>
+</div>
+<div class="control-group">
+    <label class="control-label">Select your Image</label>
+    <div class="controls">
+    <ul class="imageList clearfix">
+
       <% @images.each do |image| %>
-         <%= f.radio_button :image_id , image.image_id%> <%= image.name %>
-      <%end  %>
+        <li>
+    <%= f.radio_button :image_id , image.image_id%> <%= image.name %>
+        </li>
+    <%end  %>
+    </ul>
     </div>
-
+</div>
+</div>
     <div class="form-actions">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                  instances_path, :class => 'btn' %>
+      <%= f.submit "Create Instance", :class => 'customBtn', :id => "submitButton" %>
     </div>
 <% end %>
+
+<script type="text/javascript">
+    var user_name = new LiveValidation('user_name');
+    user_name.add( Validate.Presence );
+
+    var title = new LiveValidation('title');
+    title.add( Validate.Presence );
+$("#submitButton").click(function(event){
+    if($("input:radio:checked").size() < 2)
+    {
+        alert("Flavour and Image must be need to be selected to create an instance !!!");
+        return false;
+    }
+
+});
+
+
+</script>
+
