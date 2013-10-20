@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
     thread = Thread.new do
     instances = []
     cloud_providers = user.cloud_providers
-    cloud_providers.each{|cp| cp.instances.delete_all}
+
     cloud_providers.each{|c| c.destroy}
    end
    thread.run
