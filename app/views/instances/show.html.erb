@@ -25,7 +25,7 @@
         <dd><%= @instance.image_id %></dd>
     <% end %>
     <dt><strong><%= model_class.human_attribute_name(:state) %>:</strong></dt>
-    <dd> <div id="instance_state"><%= @instance.state %> <%= image_tag("/ajax-loader.gif") if @instance.to_s.downcase == "building"%></div></dd>
+    <dd> <div id="instance_state"><%= @instance.state %> <%= image_tag("/ajax-loader.gif") %></div></dd>
     <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
     <dd><%= best_in_place @instance, :name %></dd>
     <dt><strong><%= model_class.human_attribute_name(:private_ip) %>:</strong></dt>
