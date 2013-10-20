@@ -49,7 +49,7 @@ class InstanceOperations
 
   end
 ###########################################################################################
-  def resize_rackspace_instance
+  def resize_rackspace_instance(service,flavor_id)
     servers = service.servers
     #prompt user for server
     server = select_server(servers)
