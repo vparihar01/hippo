@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require jquery-bootstrap
 //= require livevalidation_standalone
+//= require custom
 
