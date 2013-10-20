@@ -28,7 +28,7 @@ class InstanceOperations
       # Check every 5 seconds to see if server is in the active state (ready?).
       # If the server has not been built in 5 minutes (600 seconds) an exception will be raised.
       server.wait_for(600, 5) do
-        
+
         Rails.logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
         instance.update_attributes(:progress => server.progress)
         break if ready?
@@ -76,13 +76,13 @@ class InstanceOperations
       # Check every 5 seconds to see if server is in the active state (ready?).
       # If the server has not been built in 5 minutes (600 seconds) an exception will be raised.
       server.wait_for(600, 5) do
-    Rails.logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"        
+        Rails.logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
         break if ready?
       end
 
       Rails.logger.info "[DONE]\n\n"
       Rails.logger.info "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
-      
+
       Rails.logger.info "The server has been successfully created, to login onto the server:\n\n"
       Rails.logger.info "\t #{server.public_ip_address}\n\n"
       instance.update_attributes(:public_ip => server.public_ip_address,
@@ -157,17 +157,26 @@ class InstanceOperations
     end
   end
 
-  def self.stop_aws(instance_id,cloud_connection)
-    cloud_connection.stop_instances(instance_id)
+  def self.stop_aws(instance,cloud_connection)
+    cloud_connection.stop_instances(instance.instance_id)
   end
 
-  def self.start_aws(instance_id,cloud_connection)
-    cloud_connection.start_instances(instance_id)
+  def self.start_aws(instance,cloud_connection)
+    cloud_connection.start_instances(instance.instance_id)
   end
 
-  def self.reboot_instances(cloud_connection, instance_id)
-    if instance_id
-      cloud_connection.servers.get(instance_id).reboot
+  def self.reboot_instances(cloud_connection, instance)
+    scheduler = Rufus::Scheduler.new
+    if instance
+      cloud_connection.servers.get(instance.instance_id).reboot
+      instance.update_attributes(:state => "Rebooting")
+      scheduler.in '2m' do
+        if instance.cloud_provider.type.include?("Aws")
+          instance.update_attributes(:state => "running")
+        else
+          instance.update_attributes(:state => "Active")
+        end
+      end
     else
       puts "No instances to start"
     end
