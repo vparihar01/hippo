@@ -1,11 +1,11 @@
 class InstanceOperations
 	
 
-	def rackspace_create(server_name,flavor,image)
+	def self.rackspace_create(server_name,flavor_id,image_id)
 		 # create server
    server = service.servers.create :name => server_name, 
-                                   :flavor_id => flavor.id, 
-                                   :image_id => image.id,
+                                   :flavor_id => flavor_id, 
+                                   :image_id => image_id,
                                    :metadata => { 'fog_sample' => 'true'},
                                    :personality => [{
                                      :path => '/root/fog.txt',
