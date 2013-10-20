@@ -25,6 +25,10 @@ class InstancesController < ApplicationController
   # GET /instances/new
   # GET /instances/new.json
   def new
+    @flavours = @provider.get_flavors
+    puts "getting the flavors #{@flavours.inspect}"
+    @images = @provider.get_images
+    puts "getting the flavors #{@images.inspect}"
     @instance = @provider.instances.new
 
     respond_to do |format|

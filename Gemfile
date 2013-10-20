@@ -13,6 +13,7 @@ gem 'state_machine', '1.0.2'
 gem "twitter-bootstrap-rails"
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'rb-readline', '~> 0.4.2'
+gem 'annotate', ">=2.5.0"
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

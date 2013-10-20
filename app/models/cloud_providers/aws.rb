@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: cloud_providers
+#
+#  id         :integer          not null, primary key
+#  key        :string(255)
+#  name       :string(255)
+#  provider   :string(255)
+#  secret     :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  type       :string(255)
+#  user_id    :integer
+#
+
 class Aws < CloudProvider
   attr_reader :connect
 
