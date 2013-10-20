@@ -14,4 +14,18 @@ $(document).ready(function(){
         });
     });
     $('.best_in_place').best_in_place();
+
+
+        $('select').each(function(){
+            var title = $(this).attr('title');
+            if( $('option:selected', this).val() != ''  ) title = $('option:selected',this).text();
+            $(this)
+                .css({'z-index':10,'opacity':0,'-khtml-appearance':'none'})
+                .after('<span class="selText">' + title + '</span>')
+                .change(function(){
+                    var selTxt = $('option:selected',this).text();
+                    $(this).next().text(selTxt);
+                })
+        });
+
 });

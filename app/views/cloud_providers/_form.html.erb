@@ -1,3 +1,5 @@
+<div class="newCloud">
+
 <%= form_for @cloud_provider, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :key, :class => 'control-label' %>
@@ -14,7 +16,8 @@
   <div class="control-group">
     <%= f.label :Provider, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select(:type, options_for_select(CloudProvider.select_options,@cloud_provider.type), {:prompt => "Select Provider", :id => "cloud_provider_type"}) %>
+      <%= f.select(:type, options_for_select(CloudProvider.select_options,@cloud_provider.type), {:prompt => "Select Provider", :id => "cloud_provider_type",:class=> 'cstSelList'}) %>
+      <%= f.select(:type, options_for_select(CloudProvider.select_options,@cloud_provider.type), {:prompt => "Select Provider", :id => "cloud_provider_type",:class=> 'cstSelList'}) %>
     </div>
   </div>
   <div class="control-group">
@@ -26,12 +29,11 @@
   </div>
 
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                cloud_providers_path, :class => 'btn' %>
+    <%= f.submit nil, :class => 'customBtn' %>
+
   </div>
 <% end %>
-
+</div>
 <script type="text/javascript">
     var user_name = new LiveValidation('user_name');
     user_name.add( Validate.Presence );
@@ -39,14 +41,12 @@
     var key = new LiveValidation('key');
     key.add( Validate.Presence );
 
-    var provider = new LiveValidation('provider');
-    provider.add( Validate.Presence );
-
     var secret = new LiveValidation('secret');
     secret.add( Validate.Presence );
 
     var cloud_provider_type = new LiveValidation('cloud_provider_type');
     cloud_provider_type.add( Validate.Presence );
+
 
 </script>
 
