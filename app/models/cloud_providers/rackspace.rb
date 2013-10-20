@@ -82,8 +82,4 @@ class Rackspace < CloudProvider
     return images
   end
 
-  def resize_rackspace_instance
-    InstanceOperations.resize_rackspace_instance(connect!,self.flavor_id)
-  end
-
 end

@@ -134,6 +134,8 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ruby-hmac (0.4.0)
+    rufus-scheduler (3.0.1)
+      tzinfo
     rvm-capistrano (1.5.1)
       capistrano (~> 2.15.4)
     sass (3.2.12)
@@ -183,6 +185,7 @@ DEPENDENCIES
   rails (= 3.2.13)
   rails_config
   rb-readline (~> 0.4.2)
+  rufus-scheduler
   rvm-capistrano
   sass-rails (~> 3.2.3)
   sextant!

@@ -76,6 +76,14 @@ class Instance < ActiveRecord::Base
     thread.run
   end
 
+  def resize_instance(cloud_connection)
+    if self.cloud_provider.type.include?("Aws")
+      InstanceOperations.resize_aws__instance(cloud_connection,self)
+    else
+      InstanceOperations.resize_rackspace_instance(cloud_connection,self)
+    end
+  end
+
   private
 
 end
