@@ -18,10 +18,12 @@
   <dd><%= @instance.public_ip %></dd>
 </dl>
 <% if @instance.state.to_s.downcase == "building" %>
-progress :
-<div class="progress progress-striped active">
-  <div class="bar" style="width: <%= @instance.progress%>%;"></div>
-</div>
+    <div id="progressBar">
+      progress :
+      <div class="progress progress-striped active">
+        <div class="bar" style="width: <%= @instance.progress%>%;"></div>
+      </div>
+    </div>
 <% end %>
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
@@ -50,9 +52,13 @@ progress :
                 complete:function(resp,type)
                 {
 
-                  response = JSON.parse(resp.responseText);
-                  $("#instance_state").text(response.state);
-                  $(".bar").css("width",response.progress +"%");
+                    response = JSON.parse(resp.responseText);
+                    $("#instance_state").text(response.state);
+                    $(".bar").css("width",response.progress +"%");
+                    if(response.state.toLowerCase() == "active")
+                    {
+                        $("#progressBar").hide();
+                    }
                 }
 
             });

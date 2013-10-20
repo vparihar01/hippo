@@ -15,6 +15,7 @@
 
 class Flavor < ActiveRecord::Base
   # attr_accessible :title, :body
+  validates_uniqueness_of :flavor_id
   def self.create_flavor_for_rackspace (cloud_connection,flavour_type)
     flavor_list = cloud_connection.flavors
     store_flavor_list flavor_list, flavour_type
