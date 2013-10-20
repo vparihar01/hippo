@@ -16,7 +16,7 @@ class CloudProvidersController < ApplicationController
   # GET /cloud_providers/1
   # GET /cloud_providers/1.json
   def show
-    @cloud_provider = CloudProvider.find(params[:id])
+    @cloud_provider = current_user.cloud_providers.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,20 +36,20 @@ class CloudProvidersController < ApplicationController
 
   # GET /cloud_providers/1/edit
   def edit
-    @cloud_provider = CloudProvider.find(params[:id])
+    @cloud_provider = current_user.cloud_providers.find(params[:id])
   end
 
   # POST /cloud_providers
   # POST /cloud_providers.json
   def create
     @cloud_provider = params[:cloud_provider][:type].constantize.new(params[:cloud_provider])
-    logger.info "#######cloud_provider#####{@cloud_provider.inspect}"
-    logger.info "#######cloud_provider class #####{@cloud_provider.class}"
     respond_to do |format|
-      if @cloud_provider.save
+      begin
+        @cloud_provider.save
         format.html { redirect_to @cloud_provider, notice: 'Cloud provider was successfully created.' }
         format.json { render json: @cloud_provider, status: :created, location: @cloud_provider }
-      else
+      rescue
+        flash[:error] = "Check the credentials again"
         format.html { render action: "new" }
         format.json { render json: @cloud_provider.errors, status: :unprocessable_entity }
       end
@@ -59,7 +59,7 @@ class CloudProvidersController < ApplicationController
   # PUT /cloud_providers/1
   # PUT /cloud_providers/1.json
   def update
-    @cloud_provider = CloudProvider.find(params[:id])
+    @cloud_provider = current_user.cloud_providers.find(params[:id])
 
     respond_to do |format|
       if @cloud_provider.update_attributes(params[:cloud_provider])
@@ -75,7 +75,7 @@ class CloudProvidersController < ApplicationController
   # DELETE /cloud_providers/1
   # DELETE /cloud_providers/1.json
   def destroy
-    @cloud_provider = CloudProvider.find(params[:id])
+    @cloud_provider = current_user.cloud_providers.find(params[:id])
     @cloud_provider.destroy
 
     respond_to do |format|

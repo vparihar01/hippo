@@ -1,25 +1,20 @@
 class Rackspace < CloudProvider
 
-  def connect
+  def connect!
     puts "I am in Base Class method connect! racky"
 
-    @cloud_connection = nil
-    begin
-      @cloud_connection = Fog::Compute.new(
+    @cloud_connection = nil  
+    @cloud_connection = Fog::Compute.new(
           {
               :provider                 => 'Rackspace',
               :rackspace_api_key        => self.key,
               :rackspace_username    => self.secret ,
               :rackspace_region => :ord
           })
-    rescue
-      logger.error("Message for the log file")      
-    end
-    logger.info("#######################{@cloud_connection.inspect}")
   end
 
   def fetch_cloud_data
-    connect
+    connect!
     puts "######connection###{@cloud_connection.inspect}#############"
     instances_list=Instance.get_instances(@cloud_connection,self.id)
     puts "######instances_list###{instances_list.inspect}#############"
