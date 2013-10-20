@@ -21,8 +21,8 @@ cloud_providers_path, :class => 'customBtn back' %>
             <li class="listAction"><%=t '.actions', :default => t("helpers.actions") %></li>
         </ul>
     </li>
+    <% @instances.each do |instance| %>
     <li>
-        <% @instances.each do |instance| %>
         <ul class="clearfix">
             <li class="listId"><%= link_to instance.id, instance_path(instance) %></li>
             <li class="instanceId"><%= instance.instance_id %></li>
@@ -42,7 +42,6 @@ cloud_providers_path, :class => 'customBtn back' %>
                 :class => 'btn btn-mini btn-danger' %>
             </li>
         </ul>
-        <% end %>
     </li>
-
+    <% end %>
 </ul>
