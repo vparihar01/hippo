@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(:version => 20131020083416) do
 
   create_table "flavors", :force => true do |t|
     t.string   "name"
-    t.integer  "flavor_id"
+    t.string   "flavor_id"
     t.string   "vcpus"
     t.string   "ram"
     t.string   "disk"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(:version => 20131020083416) do
 
   create_table "images", :force => true do |t|
     t.string   "name"
-    t.integer  "image_id"
+    t.string   "image_id"
     t.string   "min_disk"
     t.string   "min_ram"
     t.string   "flavour_type"

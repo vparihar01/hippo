@@ -67,7 +67,7 @@ class Instance < ActiveRecord::Base
   def create_instance(cloud_connection)
     flavor_id = Flavor.find(self.flavor_id).flavor_id
     image_id = Image.find(self.image_id).image_id
-    InstanceOperations.rackspace_create(cloud_connection,self.name,flavor_id,image_id)
+    InstanceOperations.delay.rackspace_create(cloud_connection,self.name,flavor_id,image_id)
   end
 
 private

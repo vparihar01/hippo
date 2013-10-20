@@ -3,7 +3,7 @@ class InstanceOperations
 
 	def self.rackspace_create(cloud_connection,server_name,flavor_id,image_id)
 		 # create server
-    puts "Inside rackspace create #{cloud_connection}  image_id #{image_id}  flavor_id #{flavor_id}"
+    Rails.logger.info "Inside rackspace create #{cloud_connection}  image_id #{image_id}  flavor_id #{flavor_id}"
    server = cloud_connection.servers.create :name => server_name,
                                    :flavor_id => flavor_id, 
                                    :image_id => image_id,
@@ -14,13 +14,13 @@ class InstanceOperations
                                    }]
 
    # reload flavor in order to retrieve all of its attributes
-   puts "\nNow creating server '#{server.name}' the following with specifications:\n" 
-   #puts "\t* #{flavor.ram} MB RAM"
-   #puts "\t* #{flavor.disk} GB"
-   #puts "\t* #{flavor.vcpus} CPU(s)"
-   #puts "\t* #{image.name}"
+   Rails.logger.info "\nNow creating server '#{server.name}' the following with specifications:\n" 
+   #Rails.logger.info "\t* #{flavor.ram} MB RAM"
+   #Rails.logger.info "\t* #{flavor.disk} GB"
+   #Rails.logger.info "\t* #{flavor.vcpus} CPU(s)"
+   #Rails.logger.info "\t* #{image.name}"
 
-   puts "\n"
+   Rails.logger.info "\n"
 
    begin
      # Check every 5 seconds to see if server is in the active state (ready?). 
@@ -31,18 +31,18 @@ class InstanceOperations
        ready?
      end
 
-     puts "[DONE]\n\n"
+     Rails.logger.info "[DONE]\n\n"
 
-     puts "The server has been successfully created, to login onto the server:\n\n"
-     puts "\t ssh #{server.username}@#{server.public_ip_address}\n\n"
+     Rails.logger.info "The server has been successfully created, to login onto the server:\n\n"
+     Rails.logger.info "\t ssh #{server.username}@#{server.public_ip_address}\n\n"
 
    rescue Fog::Errors::TimeoutError
-     puts "[TIMEOUT]\n\n"
-     puts "This server is currently #{server.progress}% into the build process and is taking longer to complete than expected."
-     puts "You can continute to monitor the build process through the web console at https://mycloud.rackspace.com/\n\n" 
+     Rails.logger.info "[TIMEOUT]\n\n"
+     Rails.logger.info "This server is currently #{server.progress}% into the build process and is taking longer to complete than expected."
+     Rails.logger.info "You can continute to monitor the build process through the web console at https://mycloud.rackspace.com/\n\n" 
    end
-   puts "The #{server.username} password is #{server.password}\n\n"
-   puts "To delete the server please execute the delete_server.rb script\n\n"
+   Rails.logger.info "The #{server.username} password is #{server.password}\n\n"
+   Rails.logger.info "To delete the server please execute the delete_server.rb script\n\n"
 
 	end
 end
