@@ -51,6 +51,7 @@ class InstancesController < ApplicationController
   # POST /instances.json
   def create
     @instance = @provider.instances.new(params[:instance])
+    @instance.state = "Building"
     respond_to do |format|
       if @instance.save
         @instance.create_instance(@provider.connect!)

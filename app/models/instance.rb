@@ -18,7 +18,7 @@
 #
 
 class Instance < ActiveRecord::Base
-  attr_accessible :title, :body, :instance_id, :state, :flavor_id, :name,:private_ip, :public_ip, :image_id
+  attr_accessible :title, :body, :instance_id, :state, :flavor_id, :name,:private_ip, :public_ip, :image_id, :progress
   #validates_presence_of :name
 
   belongs_to :cloud_provider
@@ -65,9 +65,7 @@ class Instance < ActiveRecord::Base
   end
 
   def create_instance(cloud_connection)
-    flavor_id = Flavor.find(self.flavor_id).flavor_id
-    image_id = Image.find(self.image_id).image_id
-    InstanceOperations.rackspace_create(cloud_connection,self.name,flavor_id,image_id)
+    InstanceOperations.rackspace_create(cloud_connection,self)
   end
 
 private
