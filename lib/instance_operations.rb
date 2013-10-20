@@ -26,11 +26,11 @@ class InstanceOperations
       # Check every 5 seconds to see if server is in the active state (ready?).
       # If the server has not been built in 5 minutes (600 seconds) an exception will be raised.
       server.wait_for(600, 5) do
-        Rails.logger.info "."
+        
+        Rails.logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
         instance.update_attributes(:progress => server.progress)
         break if ready?
       end
-
       Rails.logger.info "[DONE]\n\n"
 
       Rails.logger.info "The server has been successfully created, to login onto the server:\n\n"
@@ -60,7 +60,7 @@ class InstanceOperations
                                                               }]
 
     # reload flavor in order to retrieve all of its attributes
-    Rails.logger.info "\nNow creating server '#{server.tags['Name']}' the following with specifications:\n"
+    Rails.logger.info "\nNow creating server '#{server.inspect}' the following with specifications:\n"
     instance.update_attributes(:instance_id => server.id)
     instance.save
     #puts "\t* #{flavor.ram} MB RAM"
@@ -74,12 +74,13 @@ class InstanceOperations
       # Check every 5 seconds to see if server is in the active state (ready?).
       # If the server has not been built in 5 minutes (600 seconds) an exception will be raised.
       server.wait_for(600, 5) do
-        Rails.logger.info "."
+    Rails.logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"        
         break if ready?
       end
 
       Rails.logger.info "[DONE]\n\n"
-
+      Rails.logger.info "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+      
       Rails.logger.info "The server has been successfully created, to login onto the server:\n\n"
       Rails.logger.info "\t #{server.public_ip_address}\n\n"
       instance.update_attributes(:public_ip => server.public_ip_address,

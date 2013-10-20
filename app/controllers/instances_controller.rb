@@ -102,6 +102,14 @@ class InstancesController < ApplicationController
     end
   end
 
+  def start
+  end
+
+  def stop
+    @instance = Instance.find params[:id]
+    @instance.stop_aws_instance(@provider)
+  end
+
   private
 
   def find_provider

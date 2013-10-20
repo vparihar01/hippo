@@ -43,7 +43,7 @@
       </li>
       <li>
         <%= link_to "Stop",
-                    instance_path(@instance),
+                    cloud_provider_instance_stop_path(@provider,@instance),
                     :method => 'delete',
                     :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                     :class => 'btn btn-danger' %>

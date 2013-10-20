@@ -7,7 +7,10 @@ Hippo::Application.routes.draw do
 
 
   resources :cloud_providers do
-    resources :instances
+    resources :instances do
+      get :stop
+      get :start
+    end
   end
 
 
