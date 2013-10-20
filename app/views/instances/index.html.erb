@@ -23,8 +23,9 @@ cloud_providers_path, :class => 'customBtn back' %>
     </li>
     <% @instances.each do |instance| %>
     <li>
+        <%= link_to instance_path(instance),:title => "Some link" do %>
         <ul class="clearfix">
-            <li class="listId"><%= link_to instance.id, instance_path(instance) %></li>
+            <li class="listId"><%= instance.id%></li>
             <li class="instanceId"><%= instance.instance_id %></li>
             <li class="listState"><%= instance.state %></li>
             <li class="listFlavour"><%= instance.flavor_id %></li>
@@ -32,9 +33,7 @@ cloud_providers_path, :class => 'customBtn back' %>
             <li class="listPrivateIP"><%= instance.private_ip %></li>
             <li class="listPublicIP"><%= instance.public_ip %></li>
             <li class="listDetails"><%=l instance.created_at %></li>
-            <li class="listAction">
-                <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                edit_cloud_provider_instance_path(@provider,instance), :class => 'btn btn-mini' %>
+            <li class="listAction">                
                 <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                 instance_path(instance),
                 :method => :delete,
@@ -42,6 +41,7 @@ cloud_providers_path, :class => 'customBtn back' %>
                 :class => 'btn btn-mini btn-danger' %>
             </li>
         </ul>
+        <% end %>
     </li>
     <% end %>
 </ul>
