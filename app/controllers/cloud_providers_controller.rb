@@ -4,8 +4,6 @@ class CloudProvidersController < ApplicationController
   # GET /cloud_providers.json
   def index
     @cloud_providers = current_user.cloud_providers
-    logger.info("################################{@cloud_providers.inspect}")
-    logger.info("################################{@cloud_providers.present?.inspect}")
 
     respond_to do |format|
       format.html # index.html.erb
