@@ -15,7 +15,8 @@ class InstancesController < ApplicationController
   # GET /instances/1.json
   def show
     @instance = Instance.find(params[:id])
-
+    @flavor = Flavor.find_by_flavor_id(@instance.flavor_id)
+    @image = Image.find_by_image_id(@instance.image_id)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @instance }
@@ -52,7 +53,6 @@ class InstancesController < ApplicationController
     respond_to do |format|
       if @instance.save
         @instance.create_instance(@provider.connect!)
-
         format.html { redirect_to cloud_provider_instance_path(@provider,@instance), notice: 'Instance was successfully created.' }
         format.json { render json: @instance, status: :created, location: @instance }
       else
@@ -97,7 +97,8 @@ class InstancesController < ApplicationController
   def instance_status
   @instance = Instance.find(params[:id])
   respond_to do | format|
-      format.json { render :json => {:state => @instance.state, :progress => @instance.progress}}
+      format.json { render :json => {:state => @instance.state, :progress => @instance.progress,
+                                      :publicip => instance.public_ip, :privateip => instance.private_ip}}
     end
   end
 

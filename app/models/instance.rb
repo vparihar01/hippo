@@ -66,6 +66,7 @@ class Instance < ActiveRecord::Base
 
   def create_instance(cloud_connection)
     logger.info("INside the thread ##############################")
+    logger.info("##############{cloud_connection.inspect}#################")
     thread = Thread.new do
       if self.cloud_provider.type.include?("Aws")
         InstanceOperations.aws_create(cloud_connection,self)
