@@ -35,7 +35,7 @@ class CloudProvider < ActiveRecord::Base
   #To Make The Parent Class Aware of Its Children
 
   def self.select_options
-    puts "#######{descendants.map{ |c| c.to_s }.sort}"
+    puts "#######{descendants.map{ |c| c.to_s.camelcase }.sort}"
     descendants.map{ |c| c.to_s }.sort
   end
 
