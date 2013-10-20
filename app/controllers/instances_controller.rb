@@ -25,7 +25,7 @@ class InstancesController < ApplicationController
   # GET /instances/new
   # GET /instances/new.json
   def new
-    @instance = Instance.new
+    @instance = @provider.instances.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,13 +35,13 @@ class InstancesController < ApplicationController
 
   # GET /instances/1/edit
   def edit
-    @instance = Instance.find(params[:id])
+    @instance = @provider.instances.find(params[:id])
   end
 
   # POST /instances
   # POST /instances.json
   def create
-    @instance = Instance.new(params[:instance])
+    @instance = @provider.instances.new(params[:instance])
 
     respond_to do |format|
       if @instance.save
@@ -57,7 +57,7 @@ class InstancesController < ApplicationController
   # PUT /instances/1
   # PUT /instances/1.json
   def update
-    @instance = Instance.find(params[:id])
+    @instance = @provider.instances.find(params[:id])
 
     respond_to do |format|
       if @instance.update_attributes(params[:instance])
@@ -73,7 +73,7 @@ class InstancesController < ApplicationController
   # DELETE /instances/1
   # DELETE /instances/1.json
   def destroy
-    @instance = Instance.find(params[:id])
+    @instance = @provider.instances.find(params[:id])
     @instance.destroy
 
     respond_to do |format|
@@ -85,6 +85,6 @@ class InstancesController < ApplicationController
   private
 
   def find_provider
-    @provider = CloudProvider.find(params[:cloud_provider_id])
+    @provider = current_user.cloud_providers.find(params[:cloud_provider_id])
   end
 end
