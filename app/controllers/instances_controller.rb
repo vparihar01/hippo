@@ -51,7 +51,7 @@ class InstancesController < ApplicationController
   # POST /instances.json
   def create
     @instance = @provider.instances.new(params[:instance])
-
+    @instance.create_instance
     respond_to do |format|
       if @instance.save
         format.html { redirect_to @instance, notice: 'Instance was successfully created.' }

@@ -62,6 +62,10 @@ class Instance < ActiveRecord::Base
     end
   end
 
+  def create_instance
+    InstanceOperations.rackspace_create(self.name,self.flavor_id,self.image_id)
+  end
+
 private
 
 end
