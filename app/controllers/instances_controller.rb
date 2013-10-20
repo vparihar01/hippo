@@ -99,7 +99,8 @@ class InstancesController < ApplicationController
   def instance_status
   @instance = Instance.find(params[:id])
   respond_to do | format|
-      format.json { render :json => {:state => @instance.state, :progress => @instance.progress}}
+      format.json { render :json => {:state => @instance.state, :progress => @instance.progress,
+                                      :publicip => instance.public_ip, :privateip => instance.private_ip}}
     end
   end
 

@@ -24,13 +24,13 @@
         <dd><%= @instance.image_id %></dd>
     <% end %>
     <dt><strong><%= model_class.human_attribute_name(:state) %>:</strong></dt>
-    <dd> <div id="instance_state"><%= @instance.state %></div></dd>
+    <dd> <div id="instance_state"><%= @instance.state %> <%= image_tag("/ajax-loader.gif") if @instance.to_s.downcase == "building"%></div></dd>
     <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
     <dd><%= best_in_place @instance, :name %></dd>
     <dt><strong><%= model_class.human_attribute_name(:private_ip) %>:</strong></dt>
-    <dd><%= @instance.private_ip %></dd>
+    <dd><div id="private_ip"><%= @instance.private_ip %></div></dd>
     <dt><strong><%= model_class.human_attribute_name(:public_ip) %>:</strong></dt>
-    <dd><%= @instance.public_ip %></dd>
+    <dd><div id="public_ip"><%= @instance.public_ip %></div></dd>
   </dl>
   <% if @instance.state.to_s.downcase == "building" && @provider.type.to_s.downcase == "rackspace" %>
       <div class="progressWrapper">
@@ -101,6 +101,8 @@
 
                     response = JSON.parse(resp.responseText);
                     $("#instance_state").text(response.state);
+                    $("#private_ip").text(response.privateip);
+                    $("#public_ip").text(response.publicip);
                     $(".bar").css("width",response.progress +"%");
                     if(response.state.toLowerCase() == "active")
                     {
