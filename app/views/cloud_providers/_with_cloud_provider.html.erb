@@ -1,5 +1,13 @@
 <div class="dashboardWrapper">
-    <h1>Providers</h1>
+    <div class="headerWrapper clearfix">
+        <h1>Providers</h1>
+
+        <%= link_to t('.new', :default => t("helpers.links.Link your cloud")),
+        new_cloud_provider_path,
+        :class => 'customBtn' %>
+
+
+    </div>
 <ul>
   <% cloud_providers.each do |cp|%>
     <li>
@@ -37,8 +45,5 @@
     </li>
     <% end %>
 </ul>
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_cloud_provider_path,
-            :class => 'btn btn-primary' %>
 
 </div>
