@@ -1,6 +1,11 @@
 <%- model_class = CloudProvider -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+
+  <%= link_to "Register your cloud",
+              new_cloud_provider_path,
+              :class => 'btn customBtn pull-right' %>
+
 </div>
 <table class="table table-striped">
   <thead>
@@ -36,7 +41,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_cloud_provider_path,
-            :class => 'btn btn-primary' %>
