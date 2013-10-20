@@ -43,13 +43,13 @@ class CloudProvidersController < ApplicationController
   # POST /cloud_providers.json
   def create
     @cloud_provider = params[:cloud_provider][:type].constantize.new(params[:cloud_provider])
-    logger.info "#######cloud_provider#####{@cloud_provider.inspect}"
-    logger.info "#######cloud_provider class #####{@cloud_provider.class}"
     respond_to do |format|
-      if @cloud_provider.save
+      begin
+        @cloud_provider.save
         format.html { redirect_to @cloud_provider, notice: 'Cloud provider was successfully created.' }
         format.json { render json: @cloud_provider, status: :created, location: @cloud_provider }
-      else
+      rescue
+        flash[:error] = "Check the credentials again"
         format.html { render action: "new" }
         format.json { render json: @cloud_provider.errors, status: :unprocessable_entity }
       end

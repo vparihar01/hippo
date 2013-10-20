@@ -1,42 +1,43 @@
-<%- model_class = CloudProvider -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-</div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:key) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:provider) %></th>
-      <th><%= model_class.human_attribute_name(:secret) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @cloud_providers.each do |cloud_provider| %>
-      <tr>
-        <td><%= link_to cloud_provider.id, cloud_provider_path(cloud_provider) %></td>
-        <td><%= cloud_provider.key %></td>
-        <td><%= cloud_provider.name %></td>
-        <td><%= cloud_provider.provider %></td>
-        <td><%= cloud_provider.secret %></td>
-        <td><%=l cloud_provider.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_cloud_provider_path(cloud_provider), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      cloud_provider_path(cloud_provider),
+<div class="contentBg1">
+<ul>
+  <% cloud_providers.each do |cp|%>
+    <li>
+        <div class="content">
+            <div class="<%= cp.type.downcase%>Ribbon"></div>
+            <div class="boxHeader">
+                <h4><%= cp.name%></h4>
+            </div>
+            <ul>
+                <li>
+                    <span>No of instances :</span>
+                    <span class="numbers"><%= cp.instances.size%></span>
+                </li>
+                <li>
+                    <span>Active instances :</span>
+                    <span class="numbers"><%= cp.type == "Aws" ? cp.instances.where(state: "running").count : cp.instances.where(state: "ACTIVE").count%></span>
+                </li>
+                <li>
+                    <span>Stopped instances :</span>
+                    <span class="numbers">5</span>
+                </li>
+            </ul>
+            <div class="iconsWrapper">
+                <a href="" class="viewIcon"></a>
+                <!-- <a href="" class="editIcon"></a> -->
+                <%= link_to '',edit_cloud_provider_path(cp), :class => 'editIcon' %>
+                <!-- <a href="" class="deleteIcon"></a> -->
+                <%= link_to '',cloud_provider_path(cp),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
+                      :class => 'deleteIcon' %>
+            </div>
+            <div class="bottomBox"></div>
+        </div>
+    </li>
     <% end %>
-  </tbody>
-</table>
-
+</ul>
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_cloud_provider_path,
             :class => 'btn btn-primary' %>
+
+</div>
