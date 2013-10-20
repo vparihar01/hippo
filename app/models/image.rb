@@ -13,7 +13,7 @@
 #
 
 class Image < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :flavour_type, :name, :image_id
   def self.create_image_for_rackspace (cloud_connection,flavour_type)
     image_list = cloud_connection.images
     store_image_list image_list, flavour_type

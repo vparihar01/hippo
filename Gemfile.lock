@@ -1,3 +1,10 @@
+GIT
+  remote: git@github.com:vparihar01/sextant.git
+  revision: 89301f38c6488a252d713c8916854970c9758c34
+  specs:
+    sextant (0.2.4)
+      rails (>= 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -178,6 +185,10 @@ DEPENDENCIES
   rb-readline (~> 0.4.2)
   rvm-capistrano
   sass-rails (~> 3.2.3)
+<<<<<<< HEAD
+  sextant!
+=======
+>>>>>>> 8881a51be477153e8085fd6bacaba3719b4fa229
   state_machine (= 1.0.2)
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
