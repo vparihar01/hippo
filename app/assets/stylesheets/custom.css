@@ -9,6 +9,9 @@
     font-style: normal;
 
 }
+a:hover {
+    text-decoration: none;
+}
 h1 {
     font-family: elephantregular;
 }
@@ -100,13 +103,27 @@ footer {
     width: 100%;
     height: 50px;
     position: absolute;
-    bottom :0;
+    bottom :40px;
     text-align: center;
     box-shadow: 1px 0px 2px 1px rgba(0, 0, 0, 0.2);
    
 }
 footer p {
-     line-height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    float: left;
+    padding-left: 20px;
+}
+footer a {
+    color: #023567;
+}
+footer ul {
+    float: right;
+}
+footer ul li {
+    float: left;
+    margin-right: 20px;
+    line-height: 46px;
 }
 .planeImg {
     background: url("planeBanner.png") no-repeat center right;
@@ -308,6 +325,9 @@ select {
     font-size: 14px;
     margin-left: 15px;
 }
+.back i {
+    margin-top: 3px;
+}
 .LV_validation_message {
     display: none;
 }
@@ -336,7 +356,7 @@ input.LV_invalid_field {
     margin-left: 0;
 }
 .viewProvider .controls {
-    margin-left: 160px;
+    margin-left: 180px;
 }
 .dl-horizontal dd {
     letter-spacing: 1px;
@@ -456,6 +476,8 @@ a i {
 .viewInstance .customBtn {
     padding: 4px 12px;
     text-shadow: none;
+    font-weight: normal;
+    font-size: 14px;
 }
 .viewInstance .dl-horizontal dt {
     width: 140px;
@@ -468,4 +490,7 @@ a i {
 }
 .cloudList > li {
     padding: 0;
+}
+.loginScreen {
+    background: url("cartoon3.png") no-repeat right bottom;
 }

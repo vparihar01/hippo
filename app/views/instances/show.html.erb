@@ -1,9 +1,9 @@
 <%- model_class = Instance -%>
 <div class=" viewInstance">
   <div class="headerWrapper clearfix">
-    <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+    <h1><%= @instance.cloud_provider.name.split(" ").first%>'s <%= " "%><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
     <%= link_to "<i class='icon-arrow-left icon-white'></i> BACK".html_safe,
-                request.referrer, :class => 'customBtn back' %>
+                cloud_provider_instances_path, :class => 'customBtn back' %>
   </div>
 
   <dl class="dl-horizontal">
@@ -25,7 +25,7 @@
         <dd><%= @instance.image_id %></dd>
     <% end %>
     <dt><strong><%= model_class.human_attribute_name(:state) %>:</strong></dt>
-    <dd> <div id="instance_state"><%= @instance.state %> <%= image_tag("/ajax-loader.gif") %></div></dd>
+    <dd> <div id="instance_state"><%= @instance.state %></div><%= image_tag("/ajax-loader.gif", :class => "imgLoader") if @instance.state.to_s.downcase == 'building'.strip || @instance.state.to_s.downcase == 'rebooting'.strip %></dd>
     <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
     <dd><%= best_in_place @instance, :name %></dd>
     <dt><strong><%= model_class.human_attribute_name(:private_ip) %>:</strong></dt>
@@ -44,46 +44,50 @@
   <% end %>
   <div class="form-actions">
     <ul>
+      <% if @instance.state != "terminated"%>
       <% if @provider.type.to_s.downcase == "aws"%>
-      <%if @instance.state == "Stopped"%>
+      <%if @instance.state == "stopped"%>
       <li>
         <%= link_to "Start",
                     start_cloud_provider_instance_path(@provider,@instance),
                     :method => 'get',
                     :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                    :class => 'btn btn-success' %>
+                    :class => 'btn btn-success disableClass' %>
       </li>
       <%end%>
-      <%if @instance.state == "Running"%>
+      <%if @instance.state.to_s.downcase == "running"%>
       <li>
-        <%= link_to "Stop",stop_cloud_provider_instance_path(@provider,@instance),:method => 'get',:data => { :confirm => t('confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },:class => 'btn btn-danger' %>
+        <%= link_to "Stop",stop_cloud_provider_instance_path(@provider,@instance),:method => 'get',:data => { :confirm => t('confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },:class => 'btn btn-danger disableClass' %>
       </li>
       <%end%>
       <% end %>
       <% if @provider.type.to_s.downcase == "rackspace"%>
       <li>
         <%= link_to "Resize",
-                    instance_path(@instance),
-                    :method => 'delete',
+                    resize_server_cloud_provider_instance_path(@provider,@instance),
+                    :method => 'get',
                     :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                    :class => 'btn customBtn' %>
+                    :class => 'btn customBtn disableClass' %>
       </li>
       <% end %>
+      <%if @instance.state != "stopped"%>
       <li>
         <%= link_to "Reboot",
                     reboot_cloud_provider_instance_path(@provider,@instance),
                     :method => 'get',
                     :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                    :class => 'btn btn-inverse' %>
+                    :class => 'btn btn-inverse disableClass' %>
       </li>
+      <%end%>
 
       <li>
-        <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                    instance_path(@instance),
+        <%= link_to "Terminated",
+                    cloud_provider_instance_path(@provider,@instance),
                     :method => 'delete',
                     :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                    :class => 'btn btn-danger' %>
+                    :class => 'btn btn-danger disableClass' %>
       </li>
+      <% end %>      
     </ul>
 
   </div>
@@ -91,8 +95,17 @@
 <script>
     //Call the yourAjaxCall() function every 1000 millisecond
     setInterval("yourAjaxCall()",1000);
+    $(".disableClass").click(function(e){
+        if($.trim($("#instance_state").text().toLowerCase()) == "building" || $.trim($("#instance_state").text().toLowerCase()) == 'rebooting')
+        {
+            alert("Please wait process is already running !!!");
+            return false;
+        }
+
+    });
     function yourAjaxCall(){
-        if($("#instance_state").text().toLowerCase() == "building")
+
+        if($.trim($("#instance_state").text().toLowerCase()) == "building" || $.trim($("#instance_state").text().toLowerCase()) == 'rebooting')
         {
             $.ajax({
                 url:"/instances/<%= @instance.id%>/instance_status",
@@ -108,9 +121,10 @@
                     $("#private_ip").text(response.privateip);
                     $("#public_ip").text(response.publicip);
                     $(".bar").css("width",response.progress +"%");
-                    if(response.state.toLowerCase() == "active")
+                    if($.trim($("#instance_state").text().toLowerCase()) != "building" || $.trim($("#instance_state").text().toLowerCase()) != 'rebooting')
                     {
                         $(".progressWrapper").hide();
+                        $(".imgLoader").hide();
                     }
                 }
 
