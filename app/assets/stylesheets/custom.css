@@ -296,6 +296,7 @@ select {
 .form-actions {
     background: none;
     border: none;
+    padding: 0;
 }
 .back {
     float: right;
@@ -422,11 +423,34 @@ input.LV_invalid_field {
 input[type="radio"]{
     margin: 0;
 }
-.form-horizontal .control-group {
+.newInstancePage .form-horizontal .control-group, .newCloud .form-horizontal .control-group, .progressWrapper {
     background: #d4ebfe;
     padding: 10px 0;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
 }
 a i {
     float: left;
+}
+.progressWrapper {
+    padding: 10px;
+    font-weight: bold;
+}
+.viewInstance {
+    background: url("cartoon2.png") no-repeat right bottom;
+    min-height: 600px;
+}
+.viewInstance dl {
+    width: 400px;
+}
+.viewInstance ul {
+    width: 400px;
+    margin-left: 180px;
+}
+.viewInstance ul li{
+    float: left;
+    margin-right: 5px;
+}
+.viewInstance .customBtn {
+    padding: 4px 12px;
+    text-shadow: none;
 }
