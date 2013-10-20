@@ -4,7 +4,7 @@
 #
 #  id           :integer          not null, primary key
 #  name         :string(255)
-#  flavor_id    :integer
+#  flavor_id    :string(255)
 #  vcpus        :string(255)
 #  ram          :string(255)
 #  disk         :string(255)

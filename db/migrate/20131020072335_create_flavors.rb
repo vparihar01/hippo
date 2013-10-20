@@ -2,7 +2,7 @@ class CreateFlavors < ActiveRecord::Migration
   def change
     create_table :flavors do |t|
       t.string :name
-      t.integer :flavor_id
+      t.string :flavor_id
       t.string :vcpus
       t.string :ram
       t.string :disk

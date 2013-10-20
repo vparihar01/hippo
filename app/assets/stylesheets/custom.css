@@ -285,10 +285,12 @@ select {
     position: relative;
 }
 .newCloud {
-    background: url("cartoon.png") no-repeat left bottom;
+    background: url("cartoon.png") no-repeat 32px bottom;
+    min-height: 330px;
 }
 .form-actions {
-    background-color: #d4ebfe;
+    background: none;
+    border: none;
 }
 .back {
     float: right;
@@ -297,6 +299,7 @@ select {
     text-align: right;
     height: 15px;
     line-height: 15px;
+    font-size: 14px;
 }
 .LV_validation_message {
     display: none;
@@ -306,4 +309,15 @@ input.LV_invalid_field {
 }
 .form-horizontal .control-label {
     cursor: auto
+}
+.note {
+    background: url("stickyNote.png") no-repeat center bottom;
+    width: 290px;
+    height: 120px;
+    position: absolute;
+    top: -75px;
+    right: -270px;
+}
+.newCloud .controls {
+    position: relative;
 }

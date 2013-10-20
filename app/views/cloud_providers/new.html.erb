@@ -2,7 +2,7 @@
 <div class="headerWrapper clearfix">
   <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
 
-      <%= link_to t('.cancel', :default => t("helpers.links.back")),
+      <%= link_to "<i class='icon-arrow-left icon-white'></i> BACK".html_safe,
       cloud_providers_path, :class => 'customBtn back' %>
 
 </div>
