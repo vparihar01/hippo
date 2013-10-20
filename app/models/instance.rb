@@ -65,7 +65,11 @@ class Instance < ActiveRecord::Base
   end
 
   def create_instance(cloud_connection)
-    InstanceOperations.delay.rackspace_create(cloud_connection,self)
+    thread = Thread.new do
+      InstanceOperations.rackspace_create(cloud_connection,self)
+    end
+    thread.run
+
   end
 
 private
