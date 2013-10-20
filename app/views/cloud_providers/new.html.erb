@@ -1,5 +1,9 @@
 <%- model_class = CloudProvider -%>
-<div class="page-header">
+<div class="headerWrapper clearfix">
   <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
+
+      <%= link_to t('.cancel', :default => t("helpers.links.back")),
+      cloud_providers_path, :class => 'customBtn back' %>
+
 </div>
 <%= render :partial => 'form' %>
