@@ -13,4 +13,5 @@ $(document).ready(function(){
             // Animation complete.
         });
     });
+    $('.best_in_place').best_in_place();
 });

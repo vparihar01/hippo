@@ -5,11 +5,8 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @instance.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:instance_id) %>:</strong></dt>
-  <dd><%= @instance.instance_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:state) %>:</strong></dt>
-  <dd><%= @instance.state %></dd>
+  <dd><%= best_in_place @instance, :name %></dd>
+
   <dt><strong><%= model_class.human_attribute_name(:flavor_id) %>:</strong></dt>
   <dd><%= @instance.flavor_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>

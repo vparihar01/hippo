@@ -4,7 +4,7 @@ gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-
+gem 'best_in_place'
 gem 'mysql2'
 gem 'state_machine', '1.0.2'
 #gem  'sqlite3'

@@ -57,8 +57,11 @@ class InstancesController < ApplicationController
   # PUT /instances/1
   # PUT /instances/1.json
   def update
-    @instance = @provider.instances.find(params[:id])
-
+    if request.xhr?
+      @instance = Instance.find(params[:id])
+      else
+      @instance = @provider.instances.find(params[:id])
+      end
     respond_to do |format|
       if @instance.update_attributes(params[:instance])
         format.html { redirect_to @instance, notice: 'Instance was successfully updated.' }
@@ -85,6 +88,6 @@ class InstancesController < ApplicationController
   private
 
   def find_provider
-    @provider = current_user.cloud_providers.find(params[:cloud_provider_id])
+    @provider = current_user.cloud_providers.find_by_id(params[:cloud_provider_id])
   end
 end

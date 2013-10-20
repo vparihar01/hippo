@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   def create  # For Guest login Session
     @user = params[:user] ? User.find_or_initialize_by_email_and_name(params[:user][:email],params[:user][:name]) : User.new_guest
     if @user.save
+      Notifier.welcome(@user).deliver
       session[:user_id] = @user.id
       redirect_to root_url, :notice => "Successfuly login as Guest"
     else

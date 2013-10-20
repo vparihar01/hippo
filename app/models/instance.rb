@@ -1,5 +1,5 @@
 class Instance < ActiveRecord::Base
-  # attr_accessible :title, :body
+   attr_accessible :title, :body, :name
   #validates_presence_of :name
 
   belongs_to :cloud_provider
