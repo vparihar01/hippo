@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     @user = params[:user] ? User.find_or_initialize_by_email_and_name(params[:user][:email],params[:user][:name]) : User.new_guest
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_url, :notice => "Successfuly login as Guest"
+      redirect_to cloud_providers_path, :notice => "Successfuly login as Guest. Dont worry, once you logout we flush all your data"
     else
       render "new"
     end
@@ -15,15 +15,11 @@ class SessionsController < ApplicationController
 
     user = current_user
     session[:user_id] = nil
-    #thread = Thread.new do
-    instances = []
+    thread = Thread.new do
     cloud_providers = user.cloud_providers
-    cloud_providers.each{|instance| instances + instance}
     cloud_providers.each{|c| c.destroy}
-    instances = instances.compact
-    instances.each{|i| i.destroy}
-   # end
-    thread.run
+   end
+   thread.run
 
     redirect_to root_url, notice: "Logged out!"
   end
