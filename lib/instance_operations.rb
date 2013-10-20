@@ -167,7 +167,7 @@ class InstanceOperations
 
   def self.reboot_instances(cloud_connection, instance)
     scheduler = Rufus::Scheduler.new
-    if instance_id
+    if instance
       cloud_connection.servers.get(instance.instance_id).reboot
       instance.update_attributes(:state => "Rebooting")
       scheduler.in '2m' do
