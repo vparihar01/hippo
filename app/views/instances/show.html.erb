@@ -7,13 +7,14 @@
   </div>
 
   <dl class="dl-horizontal">
-
+    <dt><strong>Instance Id:</strong></dt>
+    <dd><%= @instance.instance_id %></dd>
 
     <dt><strong><%= model_class.human_attribute_name(:flavor_id) %>:</strong></dt>
     <% if  @flavor.present? %>
         <dd>Name: <%= @flavor.name %></dd>
-        <dd>Ram: <%= @flavor.ram %></dd>
-        <dd>Disk: <%= @flavor.disk%></dd>
+        <dd>Ram: <%= @flavor.ram %> <%=  @flavor.ram.to_i < 512 ? "GB" : "MB" if @flavor.ram.present? %></dd>
+        <dd>Disk: <%= @flavor.disk%> <%=  @flavor.disk.to_i < 512 ? "GB" : "MB" if @flavor.disk.present? %></dd>
      <% else%>
         <dd><%= @instance.flavor_id %></dd>
      <% end %>
