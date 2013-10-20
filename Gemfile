@@ -35,6 +35,7 @@ gem "delayed_job_active_record"
 gem 'rb-readline', '~> 0.4.2'
 gem 'nokogiri'
 gem "delayed_job"
+gem "daemons"
 
 
 # To use ActiveModel has_secure_password

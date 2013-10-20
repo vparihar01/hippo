@@ -32,13 +32,13 @@
 
     <div class="control-group">
       <% @flavours.each do |flavor| %>
-         <%= f.radio_button :flavor_id , flavor.id%> <%= flavor.name %> <%= flavor.ram %>
+         <%= f.radio_button :flavor_id , flavor.flavor_id%> <%= flavor.name %> <%= flavor.ram %>
       <%end  %>
 
     </div>
     <div class="control-group">
       <% @images.each do |image| %>
-         <%= f.radio_button :image_id , image.id%> <%= image.name %>
+         <%= f.radio_button :image_id , image.image_id%> <%= image.name %>
       <%end  %>
     </div>
 
