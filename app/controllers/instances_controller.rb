@@ -49,6 +49,8 @@ class InstancesController < ApplicationController
     @instance.create_instance
     respond_to do |format|
       if @instance.save
+        @instance.create_instance
+
         format.html { redirect_to @instance, notice: 'Instance was successfully created.' }
         format.json { render json: @instance, status: :created, location: @instance }
       else
@@ -63,9 +65,9 @@ class InstancesController < ApplicationController
   def update
     if request.xhr?
       @instance = Instance.find(params[:id])
-      else
+    else
       @instance = @provider.instances.find(params[:id])
-      end
+    end
     respond_to do |format|
       if @instance.update_attributes(params[:instance])
         format.html { redirect_to @instance, notice: 'Instance was successfully updated.' }

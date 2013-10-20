@@ -16,10 +16,10 @@ class InstanceOperations
    flavor.reload
 
    puts "\nNow creating server '#{server.name}' the following with specifications:\n" 
-   puts "\t* #{flavor.ram} MB RAM"
-   puts "\t* #{flavor.disk} GB"
-   puts "\t* #{flavor.vcpus} CPU(s)"
-   puts "\t* #{image.name}"
+   #puts "\t* #{flavor.ram} MB RAM"
+   #puts "\t* #{flavor.disk} GB"
+   #puts "\t* #{flavor.vcpus} CPU(s)"
+   #puts "\t* #{image.name}"
 
    puts "\n"
 
