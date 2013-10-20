@@ -1,12 +1,15 @@
 Hippo::Application.routes.draw do
-  resources :instances
+  resources :instances  do
+    member do
+      get :instance_status
+    end
+  end
 
 
   resources :cloud_providers do
     resources :instances
   end
 
-  resources :users
 
 
   get "homes/index"

@@ -95,6 +95,13 @@ class InstancesController < ApplicationController
     end
   end
 
+  def instance_status
+  @instance = Instance.find(params[:id])
+  respond_to do | format|
+      format.json { render :json => {:state => @instance.state, :progress => @instance.progress}}
+    end
+  end
+
   private
 
   def find_provider
