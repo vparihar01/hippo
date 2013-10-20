@@ -116,7 +116,7 @@ class InstancesController < ApplicationController
 
   def reboot
     @instance = Instance.find params[:id]
-    InstanceOperations.reboot_instances(@provider.connect!, @instance.instance_id)
+    InstanceOperations.reboot_instances(@provider.connect!, @instance)
     redirect_to :back
   end
 
