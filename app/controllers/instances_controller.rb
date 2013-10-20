@@ -1,7 +1,7 @@
 class InstancesController < ApplicationController
   # GET /instances
   # GET /instances.json
-  before_filter :find_provider
+  before_filter :find_provider, :unless => proc{ request.xhr?   }
   def index
     @instances = @provider.instances.all
 
@@ -98,5 +98,6 @@ class InstancesController < ApplicationController
 
   def find_provider
     @provider = current_user.cloud_providers.find_by_id(params[:cloud_provider_id])
+    redirect_to root_path, :alert => "Sorry you are restricted to use this instance !!!" and return unless @provider.present?
   end
 end

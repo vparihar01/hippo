@@ -4,13 +4,12 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= best_in_place @instance, :name %></dd>
+
 
   <dt><strong><%= model_class.human_attribute_name(:flavor_id) %>:</strong></dt>
   <dd><%= @instance.flavor_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @instance.name %></dd>
+  <dd><%= best_in_place @instance, :name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:private_ip) %>:</strong></dt>
   <dd><%= @instance.private_ip %></dd>
   <dt><strong><%= model_class.human_attribute_name(:public_ip) %>:</strong></dt>
