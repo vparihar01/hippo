@@ -351,22 +351,22 @@ input.LV_invalid_field {
     float: left;
 }
 .listId {
-    width: 30px;
+    width: 50px;
 }
 .instanceId {
-    width: 90px;
+    width: 100px;
 }
 .listState {
-    width: 70px;
+    width: 90px;
 }
 .listFlavour {
-    width: 70px;
+    width: 80px;
 }
 .listName {
-    width: 95px;
+    width: 100px;
 }
 .listPrivateIP {
-    width: 115px;
+    width: 145px;
 }
 .listPublicIP {
     width: 120px;
@@ -393,7 +393,7 @@ input.LV_invalid_field {
 .cloudList ul:hover {
     min-height: 60px;
     border-radius: 5px;
-    background: #0061b1;
+    background: #4b85bf;
     color: #ffffff;
 }
 .cloudList .listHeading {
@@ -402,6 +402,7 @@ input.LV_invalid_field {
 .cloudList .listHeading li{
     min-height: 0;
     box-shadow: none;
+    margin: 0;
 }
 .cloudList .listHeading:hover {
     min-height: 0;
@@ -434,6 +435,8 @@ a i {
 .progressWrapper {
     padding: 10px;
     font-weight: bold;
+    width: 400px;
+    margin-left: 50px;
 }
 .viewInstance {
     background: url("cartoon2.png") no-repeat right bottom;
@@ -462,4 +465,7 @@ a i {
     text-shadow: none;    
     font-size: 14px;
     font-weight: normal;
+}
+.cloudList > li {
+    padding: 0;
 }

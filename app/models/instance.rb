@@ -52,17 +52,7 @@ class Instance < ActiveRecord::Base
     else
       puts "No instances to start"
     end
-  end
-
-
-  def reboot_instances(instance)
-    if instance
-      puts "Starting instances: " + instance.inspect
-      @compute.servers.get(instance).reboot
-    else
-      puts "No instances to start"
-    end
-  end
+  end  
 
   def create_instance(cloud_connection)
     logger.info("INside the thread ##############################")
@@ -83,6 +73,16 @@ class Instance < ActiveRecord::Base
     else
       InstanceOperations.resize_rackspace_instance(cloud_connection,self)
     end
+  end
+
+  def stop_aws_instance(cloud_connection)
+    InstanceOperations.stop_aws(self.instance_id,cloud_connection)
+    self.update_attributes(:state => "Stopped")
+  end
+
+  def start_aws_instance(cloud_connection)
+    InstanceOperations.start_aws(self.instance_id,cloud_connection)
+    self.update_attributes(:state => "Running")
   end
 
   private

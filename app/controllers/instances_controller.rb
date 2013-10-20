@@ -102,6 +102,24 @@ class InstancesController < ApplicationController
     end
   end
 
+  def start
+    @instance = Instance.find params[:id]
+    @instance.start_aws_instance(@provider.connect!)
+    redirect_to :back
+  end
+
+  def stop
+    @instance = Instance.find params[:id]
+    @instance.stop_aws_instance(@provider.connect!)
+    redirect_to :back
+  end
+
+  def reboot
+    @instance = Instance.find params[:id]
+    InstanceOperations.reboot_instances(@provider.connect!, @instance.instance_id)
+    redirect_to :back
+  end
+
   private
 
   def find_provider

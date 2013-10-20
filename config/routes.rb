@@ -10,6 +10,9 @@ Hippo::Application.routes.draw do
     resources :instances do
       member do
         get :resize_server
+        get :stop
+        get :start
+        get :reboot
       end
     end
   end

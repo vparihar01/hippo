@@ -28,11 +28,11 @@ class InstanceOperations
       # Check every 5 seconds to see if server is in the active state (ready?).
       # If the server has not been built in 5 minutes (600 seconds) an exception will be raised.
       server.wait_for(600, 5) do
-        Rails.logger.info "."
+        
+        Rails.logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
         instance.update_attributes(:progress => server.progress)
         break if ready?
       end
-
       Rails.logger.info "[DONE]\n\n"
 
       Rails.logger.info "The server has been successfully created, to login onto the server:\n\n"
@@ -62,7 +62,7 @@ class InstanceOperations
                                                               }]
 
     # reload flavor in order to retrieve all of its attributes
-    Rails.logger.info "\nNow creating server '#{server.tags['Name']}' the following with specifications:\n"
+    Rails.logger.info "\nNow creating server '#{server.inspect}' the following with specifications:\n"
     instance.update_attributes(:instance_id => server.id)
     instance.save
     #puts "\t* #{flavor.ram} MB RAM"
@@ -76,12 +76,13 @@ class InstanceOperations
       # Check every 5 seconds to see if server is in the active state (ready?).
       # If the server has not been built in 5 minutes (600 seconds) an exception will be raised.
       server.wait_for(600, 5) do
-        Rails.logger.info "."
+    Rails.logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"        
         break if ready?
       end
 
       Rails.logger.info "[DONE]\n\n"
-
+      Rails.logger.info "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+      
       Rails.logger.info "The server has been successfully created, to login onto the server:\n\n"
       Rails.logger.info "\t #{server.public_ip_address}\n\n"
       instance.update_attributes(:public_ip => server.public_ip_address,
@@ -153,6 +154,22 @@ class InstanceOperations
       puts "[TIMEOUT]\n\n"
       puts "This server is currently #{server.progress}% into the resize process and is taking longer to complete than expected."
       puts "You can continute to monitor the build process through the web console at https://mycloud.rackspace.com/\n\n"
+    end
+  end
+
+  def self.stop_aws(instance_id,cloud_connection)
+    cloud_connection.stop_instances(instance_id)
+  end
+
+  def self.start_aws(instance_id,cloud_connection)
+    cloud_connection.start_instances(instance_id)
+  end
+
+  def self.reboot_instances(cloud_connection, instance_id)
+    if instance_id
+      cloud_connection.servers.get(instance_id).reboot
+    else
+      puts "No instances to start"
     end
   end
 

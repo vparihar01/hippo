@@ -45,20 +45,20 @@
   <div class="form-actions">
     <ul>
       <% if @provider.type.to_s.downcase == "aws"%>
+      <%if @instance.state == "Stopped"%>
       <li>
         <%= link_to "Start",
-                    instance_path(@instance),
-                    :method => 'delete',
+                    start_cloud_provider_instance_path(@provider,@instance),
+                    :method => 'get',
                     :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                     :class => 'btn btn-success' %>
       </li>
+      <%end%>
+      <%if @instance.state == "Running"%>
       <li>
-        <%= link_to "Stop",
-                    instance_path(@instance),
-                    :method => 'delete',
-                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                    :class => 'btn btn-danger' %>
+        <%= link_to "Stop",stop_cloud_provider_instance_path(@provider,@instance),:method => 'get',:data => { :confirm => t('confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },:class => 'btn btn-danger' %>
       </li>
+      <%end%>
       <% end %>
       <% if @provider.type.to_s.downcase == "rackspace"%>
       <li>
@@ -71,8 +71,8 @@
       <% end %>
       <li>
         <%= link_to "Reboot",
-                    instance_path(@instance),
-                    :method => 'delete',
+                    reboot_cloud_provider_instance_path(@provider,@instance),
+                    :method => 'get',
                     :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                     :class => 'btn btn-inverse' %>
       </li>
