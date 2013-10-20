@@ -60,6 +60,7 @@
                     :class => 'btn btn-danger' %>
       </li>
       <% end %>
+      <% if @provider.type.to_s.downcase == "rackspace"%>
       <li>
         <%= link_to "Resize",
                     instance_path(@instance),
@@ -67,6 +68,7 @@
                     :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                     :class => 'btn customBtn' %>
       </li>
+      <% end %>
       <li>
         <%= link_to "Reboot",
                     instance_path(@instance),
@@ -74,6 +76,7 @@
                     :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                     :class => 'btn btn-inverse' %>
       </li>
+
       <li>
         <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                     instance_path(@instance),
