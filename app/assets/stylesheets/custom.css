@@ -459,4 +459,7 @@ a i {
 }
 .viewInstance .dl-horizontal dd {
     width: 260px;
+    text-shadow: none;    
+    font-size: 14px;
+    font-weight: normal;
 }

@@ -56,7 +56,6 @@ class InstancesController < ApplicationController
     respond_to do |format|
       if @instance.save
         @instance.create_instance(@provider.connect!)
-
         format.html { redirect_to cloud_provider_instance_path(@provider,@instance), notice: 'Instance was successfully created.' }
         format.json { render json: @instance, status: :created, location: @instance }
       else
