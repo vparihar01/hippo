@@ -25,6 +25,10 @@
                     <span>Active instances :</span>
                     <span class="numbers"><%= cp.type == "Aws" ? cp.instances.where(state: "running").count : cp.instances.where(state: "ACTIVE").count%></span>
                 </li>
+                 <li>
+                    <span>Stop instances :</span>
+                    <span class="numbers"><%= cp.type == "Aws" ? cp.instances.where(state: "stopped").count : 0%></span>
+                </li>
 
             </ul>
             <div class="iconsWrapper">
