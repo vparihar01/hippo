@@ -1,7 +1,7 @@
 <%- model_class = Instance -%>
 <div class=" viewInstance">
   <div class="headerWrapper clearfix">
-    <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+    <h1><%= @instance.cloud_provider.name.split(" ").first%>'s <%= " "%><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
     <%= link_to "<i class='icon-arrow-left icon-white'></i> BACK".html_safe,
                 request.referrer, :class => 'customBtn back' %>
   </div>
@@ -78,8 +78,8 @@
       </li>
 
       <li>
-        <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                    instance_path(@instance),
+        <%= link_to "Terminated",
+                    cloud_provider_instance_path(@provider,@instance),
                     :method => 'delete',
                     :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                     :class => 'btn btn-danger disableClass' %>
@@ -91,17 +91,18 @@
 <script>
     //Call the yourAjaxCall() function every 1000 millisecond
     setInterval("yourAjaxCall()",1000);
-    function yourAjaxCall(){
-        $(".disableClass").click(function(e){
-            if($("#instance_state").text().toLowerCase() == "building" || $("#instance_state").text().toLowerCase() == 'rebooting')
-            {
-                alert("Please wait process is already running !!!");
-            }
-
-        })
-        if($("#instance_state").text().toLowerCase() == "building" || $("#instance_state").text().toLowerCase() == 'rebooting')
+    $(".disableClass").click(function(e){
+        if($.trim($("#instance_state").text().toLowerCase()) == "building" || $.trim($("#instance_state").text().toLowerCase()) == 'rebooting')
         {
+            alert("Please wait process is already running !!!");
+            return false;
+        }
 
+    });
+    function yourAjaxCall(){
+
+        if($.trim($("#instance_state").text().toLowerCase()) == "building" || $.trim($("#instance_state").text().toLowerCase()) == 'rebooting')
+        {
             $.ajax({
                 url:"/instances/<%= @instance.id%>/instance_status",
                 type: "GET",
