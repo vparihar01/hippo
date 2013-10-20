@@ -1,4 +1,4 @@
-<%= form_for @instance, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for @instance, :url =>  cloud_provider_instances_path(@provider),  :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :title, :class => 'control-label' %>
     <div class="controls">
