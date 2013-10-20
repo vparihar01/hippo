@@ -2,15 +2,14 @@ class Notifier < ActionMailer::Base
 
   def welcome(user)
     @user = user
-    setup_email("hippo.notification@gmail.com", @user.email, "Hippo -  invitation.")
+    setup_email(@user.email, "Hippo -  Welcome Email.")
   end
 
   private
 
 
-  def setup_email(sent_by, sent_to, subject)
-    sent_by = sent_by == nil ? "Invitation@checkinforgood.com" : sent_by
-    mail(:from => sent_by,
+  def setup_email(sent_to, subject)
+    mail(:from => 'hippo.notification@gmail.com',
          :to => sent_to,
          :subject => subject)
   end
