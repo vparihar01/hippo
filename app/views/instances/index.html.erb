@@ -18,30 +18,12 @@ cloud_providers_path, :class => 'customBtn back' %>
             <li class="listPrivateIP"><%= model_class.human_attribute_name(:private_ip) %></li>
             <li class="listPublicIP"><%= model_class.human_attribute_name(:public_ip) %></li>
             <li class="listDetails"><%= model_class.human_attribute_name(:created_at) %></li>
-            <li class="listAction"><%=t '.actions', :default => t("helpers.actions") %></li>
         </ul>
     </li>
     <% @instances.each do |instance| %>
     <li>
-        <%= link_to instance_path(instance),:title => "Some link" do %>
-        <ul class="clearfix">
-            <li class="listId"><%= instance.id%></li>
-            <li class="instanceId"><%= instance.instance_id %></li>
-            <li class="listState"><%= instance.state %></li>
-            <li class="listFlavour"><%= instance.flavor_id %></li>
-            <li class="listName"><%= instance.name %></li>
-            <li class="listPrivateIP"><%= instance.private_ip %></li>
-            <li class="listPublicIP"><%= instance.public_ip %></li>
-            <li class="listDetails"><%=l instance.created_at %></li>
-            <li class="listAction">                
-                <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                instance_path(instance),
-                :method => :delete,
-                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                :class => 'btn btn-mini btn-danger' %>
-            </li>
-        </ul>
-        <% end %>
+        <%= link_to "<ul class='clearfix'><li class='listId'>#{instance.id}</li><li class='instanceId'>#{instance.instance_id }</li><li class='listState'>#{instance.state}</li><li class='listFlavour'>#{instance.flavor_id}</li><li class='listName'>#{instance.name}</li><li class='listPrivateIP'>#{instance.private_ip}</li><li class='listPublicIP'>#{instance.public_ip}</li><li class='listDetails'>#{l instance.created_at}</li></ul>".html_safe, cloud_provider_instance_path(@provider,instance) %>
+               
     </li>
     <% end %>
 </ul>
