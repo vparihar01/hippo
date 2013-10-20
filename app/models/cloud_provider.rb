@@ -24,7 +24,7 @@ class CloudProvider < ActiveRecord::Base
 
   after_create :fetch_cloud_data
 
-  has_many :instances
+  has_many :instances, :dependent => :destroy
   belongs_to :user
 
   def connect!

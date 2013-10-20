@@ -18,12 +18,10 @@ class SessionsController < ApplicationController
     thread = Thread.new do
     instances = []
     cloud_providers = user.cloud_providers
-    cloud_providers.each{|instance| instances + instance}
+    cloud_providers.each{|cp| cp.instances.delete_all}
     cloud_providers.each{|c| c.destroy}
-    instances = instances.compact
-    instances.each{|i| i.destroy}
-    end
-    thread.run
+   end
+   thread.run
 
     redirect_to root_url, notice: "Logged out!"
   end
