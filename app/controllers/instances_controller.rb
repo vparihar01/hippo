@@ -39,6 +39,11 @@ class InstancesController < ApplicationController
 
   # GET /instances/1/edit
   def edit
+    @flavours = @provider.get_flavors
+    puts "getting the flavors #{@flavours.inspect}"
+    @images = @provider.get_images
+    puts "getting the flavors #{@images.inspect}"
+    @instance = @provider.instances.new
     @instance = @provider.instances.find(params[:id])
   end
 
