@@ -77,12 +77,12 @@ class Instance < ActiveRecord::Base
 
   def stop_aws_instance(cloud_connection)
     InstanceOperations.stop_aws(self.instance_id,cloud_connection)
-    self.update_attributes(:state => "Stopped")
+    self.update_attributes(:state => "stopped")
   end
 
   def start_aws_instance(cloud_connection)
     InstanceOperations.start_aws(self.instance_id,cloud_connection)
-    self.update_attributes(:state => "Running")
+    self.update_attributes(:state => "running")
   end
 
   private
