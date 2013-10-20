@@ -339,7 +339,7 @@ input.LV_invalid_field {
     margin-left: 0;
 }
 .viewProvider .controls {
-    margin-left: 160px;
+    margin-left: 180px;
 }
 .dl-horizontal dd {
     letter-spacing: 1px;
@@ -459,6 +459,8 @@ a i {
 .viewInstance .customBtn {
     padding: 4px 12px;
     text-shadow: none;
+    font-weight: normal;
+    font-size: 14px;
 }
 .viewInstance .dl-horizontal dt {
     width: 140px;

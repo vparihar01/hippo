@@ -93,17 +93,18 @@
 <script>
     //Call the yourAjaxCall() function every 1000 millisecond
     setInterval("yourAjaxCall()",1000);
-    function yourAjaxCall(){
-        $(".disableClass").click(function(e){
-            if($("#instance_state").text().toLowerCase() == "building" || $("#instance_state").text().toLowerCase() == 'rebooting')
-            {
-                alert("Please wait process is already running !!!");
-            }
-
-        })
-        if($("#instance_state").text().toLowerCase() == "building" || $("#instance_state").text().toLowerCase() == 'rebooting')
+    $(".disableClass").click(function(e){
+        if($.trim($("#instance_state").text().toLowerCase()) == "building" || $.trim($("#instance_state").text().toLowerCase()) == 'rebooting')
         {
+            alert("Please wait process is already running !!!");
+            return false;
+        }
 
+    });
+    function yourAjaxCall(){
+
+        if($.trim($("#instance_state").text().toLowerCase()) == "building" || $.trim($("#instance_state").text().toLowerCase()) == 'rebooting')
+        {
             $.ajax({
                 url:"/instances/<%= @instance.id%>/instance_status",
                 type: "GET",
