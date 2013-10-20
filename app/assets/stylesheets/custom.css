@@ -144,6 +144,9 @@ footer p {
     width: 180px;
     margin: 0 auto;
 }
+.contentBg1 > ul {
+    margin-top: 50px;
+}
 .contentBg1 > ul > li {
     position: relative;
     width: 250px;
