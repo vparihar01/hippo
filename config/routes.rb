@@ -8,8 +8,12 @@ Hippo::Application.routes.draw do
 
   resources :cloud_providers do
     resources :instances do
-      get :stop
-      get :start
+      member do
+        get :resize_server
+        get :stop
+        get :start
+        get :reboot
+      end
     end
   end
 
@@ -21,11 +25,11 @@ Hippo::Application.routes.draw do
   resources :sessions
 
 
-resources :html do
-  collection do
-    get :sign_up
-    get :dashboard_none
-    get :dashboard
+  resources :html do
+    collection do
+      get :sign_up
+      get :dashboard_none
+      get :dashboard
     end
   end
   root :to => 'homes#index'

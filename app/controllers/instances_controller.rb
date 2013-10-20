@@ -15,7 +15,8 @@ class InstancesController < ApplicationController
   # GET /instances/1.json
   def show
     @instance = Instance.find(params[:id])
-
+    @flavor = Flavor.find_by_flavor_id(@instance.flavor_id)
+    @image = Image.find_by_image_id(@instance.image_id)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @instance }
@@ -38,12 +39,9 @@ class InstancesController < ApplicationController
   end
 
   # GET /instances/1/edit
-  def edit
+  def resize_server
     @flavours = @provider.get_flavors
     puts "getting the flavors #{@flavours.inspect}"
-    @images = @provider.get_images
-    puts "getting the flavors #{@images.inspect}"
-    @instance = @provider.instances.new
     @instance = @provider.instances.find(params[:id])
   end
 
@@ -74,6 +72,7 @@ class InstancesController < ApplicationController
     end
     respond_to do |format|
       if @instance.update_attributes(params[:instance])
+        @instance.resize_instance(@provider.connect!)
         format.html { redirect_to @instance, notice: 'Instance was successfully updated.' }
         format.json { head :no_content }
       else
@@ -98,16 +97,27 @@ class InstancesController < ApplicationController
   def instance_status
   @instance = Instance.find(params[:id])
   respond_to do | format|
-      format.json { render :json => {:state => @instance.state, :progress => @instance.progress}}
+      format.json { render :json => {:state => @instance.state, :progress => @instance.progress,
+                                      :publicip => instance.public_ip, :privateip => instance.private_ip}}
     end
   end
 
   def start
+    @instance = Instance.find params[:id]
+    @instance.start_aws_instance(@provider.connect!)
+    redirect_to :back
   end
 
   def stop
     @instance = Instance.find params[:id]
-    @instance.stop_aws_instance(@provider)
+    @instance.stop_aws_instance(@provider.connect!)
+    redirect_to :back
+  end
+
+  def reboot
+    @instance = Instance.find params[:id]
+    InstanceOperations.reboot_instances(@provider.connect!, @instance.instance_id)
+    redirect_to :back
   end
 
   private

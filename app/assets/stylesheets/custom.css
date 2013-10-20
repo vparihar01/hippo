@@ -452,8 +452,14 @@ a i {
 }
 .viewInstance .customBtn {
     padding: 4px 12px;
+    text-shadow: none;
+}
+.viewInstance .dl-horizontal dt {
+    width: 140px;
+}
+.viewInstance .dl-horizontal dd {
+    width: 260px;
     text-shadow: none;    
     font-size: 14px;
     font-weight: normal;
-
 }
