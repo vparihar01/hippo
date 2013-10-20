@@ -308,6 +308,9 @@ select {
     font-size: 14px;
     margin-left: 15px;
 }
+.back i {
+    margin-top: 3px;
+}
 .LV_validation_message {
     display: none;
 }
@@ -468,4 +471,7 @@ a i {
 }
 .cloudList > li {
     padding: 0;
+}
+.loginScreen {
+    background: url("cartoon3.png") no-repeat right bottom;
 }
