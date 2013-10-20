@@ -33,7 +33,7 @@
         <td><%=l instance.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_instance_path(instance), :class => 'btn btn-mini' %>
+                      edit_cloud_provider_instance_path(@provider,instance), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       instance_path(instance),
                       :method => :delete,

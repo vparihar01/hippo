@@ -28,9 +28,14 @@ GEM
     activesupport (3.2.13)
       i18n (= 0.6.1)
       multi_json (~> 1.0)
+    annotate (2.5.0)
+      rake
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
+    best_in_place (2.1.0)
+      jquery-rails
+      rails (~> 3.1)
     builder (3.0.4)
     capistrano (2.15.5)
       highline
@@ -155,7 +160,9 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  annotate (>= 2.5.0)
   bcrypt-ruby (~> 3.0.0)
+  best_in_place
   capistrano (~> 2.15)
   coffee-rails (~> 3.2.1)
   delayed_job

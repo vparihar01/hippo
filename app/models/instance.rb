@@ -1,5 +1,22 @@
+# == Schema Information
+#
+# Table name: instances
+#
+#  id                :integer          not null, primary key
+#  title             :string(255)
+#  instance_id       :string(255)
+#  state             :string(255)
+#  flavor_id         :string(255)
+#  name              :string(255)
+#  private_ip        :string(255)
+#  public_ip         :string(255)
+#  cloud_provider_id :string(255)
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
+
 class Instance < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :title, :body, :instance_id, :state, :flavor_id, :name
   #validates_presence_of :name
 
   belongs_to :cloud_provider
@@ -43,6 +60,10 @@ class Instance < ActiveRecord::Base
     else
       puts "No instances to start"
     end
+  end
+
+  def create_instance
+    InstanceOperations.rackspace_create(self.name,self.flavor_id,self.image_id)
   end
 
 private

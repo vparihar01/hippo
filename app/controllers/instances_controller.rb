@@ -25,6 +25,10 @@ class InstancesController < ApplicationController
   # GET /instances/new
   # GET /instances/new.json
   def new
+    @flavours = @provider.get_flavors
+    puts "getting the flavors #{@flavours.inspect}"
+    @images = @provider.get_images
+    puts "getting the flavors #{@images.inspect}"
     @instance = @provider.instances.new
 
     respond_to do |format|
@@ -35,6 +39,11 @@ class InstancesController < ApplicationController
 
   # GET /instances/1/edit
   def edit
+    @flavours = @provider.get_flavors
+    puts "getting the flavors #{@flavours.inspect}"
+    @images = @provider.get_images
+    puts "getting the flavors #{@images.inspect}"
+    @instance = @provider.instances.new
     @instance = @provider.instances.find(params[:id])
   end
 
@@ -42,7 +51,7 @@ class InstancesController < ApplicationController
   # POST /instances.json
   def create
     @instance = @provider.instances.new(params[:instance])
-
+    @instance.create_instance
     respond_to do |format|
       if @instance.save
         format.html { redirect_to @instance, notice: 'Instance was successfully created.' }
@@ -57,8 +66,11 @@ class InstancesController < ApplicationController
   # PUT /instances/1
   # PUT /instances/1.json
   def update
-    @instance = @provider.instances.find(params[:id])
-
+    if request.xhr?
+      @instance = Instance.find(params[:id])
+      else
+      @instance = @provider.instances.find(params[:id])
+      end
     respond_to do |format|
       if @instance.update_attributes(params[:instance])
         format.html { redirect_to @instance, notice: 'Instance was successfully updated.' }
@@ -85,6 +97,6 @@ class InstancesController < ApplicationController
   private
 
   def find_provider
-    @provider = current_user.cloud_providers.find(params[:cloud_provider_id])
+    @provider = current_user.cloud_providers.find_by_id(params[:cloud_provider_id])
   end
 end
