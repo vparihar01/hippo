@@ -16,9 +16,7 @@ class SessionsController < ApplicationController
     user = current_user
     session[:user_id] = nil
     thread = Thread.new do
-    instances = []
     cloud_providers = user.cloud_providers
-    cloud_providers.each{|cp| cp.instances.delete_all}
     cloud_providers.each{|c| c.destroy}
    end
    thread.run

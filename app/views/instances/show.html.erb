@@ -25,7 +25,7 @@
         <dd><%= @instance.image_id %></dd>
     <% end %>
     <dt><strong><%= model_class.human_attribute_name(:state) %>:</strong></dt>
-    <dd> <div id="instance_state"><%= @instance.state %></div><%= image_tag("/ajax-loader.gif", :class => "imgLoader") if @instance.state.to_s.downcase == 'building'.strip || @instance.state.to_s.downcase == 'rebooting'.strip %></div></dd>
+    <dd> <div id="instance_state"><%= @instance.state %></div><%= image_tag("/ajax-loader.gif", :class => "imgLoader") if @instance.state.to_s.downcase == 'building'.strip || @instance.state.to_s.downcase == 'rebooting'.strip %></dd>
     <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
     <dd><%= best_in_place @instance, :name %></dd>
     <dt><strong><%= model_class.human_attribute_name(:private_ip) %>:</strong></dt>
@@ -124,7 +124,8 @@
                     if($.trim($("#instance_state").text().toLowerCase()) != "building" || $.trim($("#instance_state").text().toLowerCase()) != 'rebooting')
                     {
                         $(".progressWrapper").hide();
-                        $(".imgLoading").hide();
+                        $(".imgLoader").hide();
+                    }
                 }
 
             });

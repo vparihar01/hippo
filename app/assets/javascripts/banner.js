@@ -63,7 +63,7 @@
     createCloseButton: function() {
       this.button = document.createElement("span");
       this.button.id = "rumbleCloseButton";
-      return this.button.innerHTML = "Ã—";
+      return this.button.innerHTML = "X";
     },
     bindEvent: function(elem, evt, cb) {
       if (elem.addEventListener) {
