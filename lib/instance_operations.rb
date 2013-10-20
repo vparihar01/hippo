@@ -1,9 +1,10 @@
 class InstanceOperations
 	
 
-	def self.rackspace_create(server_name,flavor_id,image_id)
+	def self.rackspace_create(cloud_connection,server_name,flavor_id,image_id)
 		 # create server
-   server = service.servers.create :name => server_name, 
+    puts "Inside rackspace create #{cloud_connection}  image_id #{image_id}  flavor_id #{flavor_id}"
+   server = cloud_connection.servers.create :name => server_name,
                                    :flavor_id => flavor_id, 
                                    :image_id => image_id,
                                    :metadata => { 'fog_sample' => 'true'},
@@ -13,13 +14,11 @@ class InstanceOperations
                                    }]
 
    # reload flavor in order to retrieve all of its attributes
-   flavor.reload
-
    puts "\nNow creating server '#{server.name}' the following with specifications:\n" 
-   puts "\t* #{flavor.ram} MB RAM"
-   puts "\t* #{flavor.disk} GB"
-   puts "\t* #{flavor.vcpus} CPU(s)"
-   puts "\t* #{image.name}"
+   #puts "\t* #{flavor.ram} MB RAM"
+   #puts "\t* #{flavor.disk} GB"
+   #puts "\t* #{flavor.vcpus} CPU(s)"
+   #puts "\t* #{image.name}"
 
    puts "\n"
 

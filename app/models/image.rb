@@ -4,7 +4,7 @@
 #
 #  id           :integer          not null, primary key
 #  name         :string(255)
-#  image_id     :integer
+#  image_id     :string(255)
 #  min_disk     :string(255)
 #  min_ram      :string(255)
 #  flavour_type :string(255)
@@ -29,11 +29,12 @@ class Image < ActiveRecord::Base
   end
 
   def self.initialize_image data,flavor_type
-    puts "################data  #{data}  #{flavor_type}"
+    puts "################data  #{data.id}  #{flavor_type}"
     image = Image.new
     image.name = data.name
     image.min_disk = data.minDisk
     image.min_ram = data.minRam
+    image.image_id = data.id
     image.flavour_type = flavor_type
     image.save
   end
