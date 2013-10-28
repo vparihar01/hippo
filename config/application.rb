@@ -16,7 +16,7 @@ module Hippo
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    # config.autoload_paths += %W(#{config.root}/extras)
+     config.autoload_paths += %W(#{config.root}/lib)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -38,6 +38,7 @@ module Hippo
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    config.filter_parameters += [:cloud_provider]
 
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
@@ -58,5 +59,22 @@ module Hippo
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
+
+     config.action_mailer.delivery_method = :smtp
+    # change to true to allow email to be sent during development
+     config.action_mailer.perform_deliveries = true
+     config.action_mailer.raise_delivery_errors = true
+     config.action_mailer.default :charset => "utf-8"
+
+     config.action_mailer.smtp_settings = {
+         address: "smtp.gmail.com",
+         port: 587,
+         domain: "gmail.com",
+         authentication: "plain",
+         enable_starttls_auto: true,
+         user_name: "hippo.notification@gmail.com", # ENV["GMAIL_USERNAME"]
+         password: "hippo6186" # ENV["GMAIL_ PASSWORD"]
+     }
   end
 end

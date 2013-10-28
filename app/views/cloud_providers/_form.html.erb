@@ -1,0 +1,52 @@
+<div class="newCloud">
+
+<%= form_for @cloud_provider, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+      <label class="control-label">Access/API key</label>
+    <div class="controls">
+      <%= f.text_field :key, :class => 'text_field', :id => "key", :placeholder=> 'AKIAKGLSDVSDELKWTF6Q'  %>
+    </div>
+  </div>
+  <div class="control-group">
+      <label class="control-label">Cloud Name</label>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field', :id => "user_name", :placeholder=> 'Rackspace Webonise' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :Provider, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select(:type, options_for_select(CloudProvider.select_options,@cloud_provider.type), {:prompt => "Select Provider", :id => "cloud_provider_type"}) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :secret, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :secret, :class => 'text_field', :id => "secret", :placeholder=> 'Weboniser'  %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+        <div class="note"></div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'customBtn' %>
+
+  </div>
+<% end %>
+</div>
+<script type="text/javascript">
+    var user_name = new LiveValidation('user_name');
+    user_name.add( Validate.Presence );
+
+    var key = new LiveValidation('key');
+    key.add( Validate.Presence );
+
+    var secret = new LiveValidation('secret');
+    secret.add( Validate.Presence );
+
+    var cloud_provider_type = new LiveValidation('cloud_provider_type');
+    cloud_provider_type.add( Validate.Presence );
+
+
+</script>
+

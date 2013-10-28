@@ -1,0 +1,5 @@
+<% if @cloud_providers.present?%>
+<%= render "with_cloud_provider",:cloud_providers => @cloud_providers%>
+<%else%>
+<%= render "without_cloud_provider"%>
+<%end%>

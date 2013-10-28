@@ -1,0 +1,49 @@
+<div class="dashboardWrapper">
+    <div class="headerWrapper clearfix">
+        <h1>Providers</h1>
+
+        <%= link_to t('.new', :default => t("helpers.links.Link your cloud")),
+        new_cloud_provider_path,
+        :class => 'customBtn' %>
+
+
+    </div>
+<ul>
+  <% cloud_providers.each do |cp|%>
+    <li>
+        <div class="content">
+            <div class="<%= cp.type.downcase%>Ribbon"></div>
+            <div class="boxHeader">
+                <h4><%= cp.name%></h4>
+            </div>
+            <ul>
+                <li>
+                    <span>No of instances :</span>
+                    <span class="numbers"><%= cp.instances.size%></span>
+                </li>
+                <li>
+                    <span>Active instances :</span>
+                    <span class="numbers"><%= cp.type == "Aws" ? cp.instances.where(state: "running").count : cp.instances.where(state: "ACTIVE").count%></span>
+                </li>
+                 <li>
+                    <span>Stop instances :</span>
+                    <span class="numbers"><%= cp.type == "Aws" ? cp.instances.where(state: "stopped").count : 0%></span>
+                </li>
+
+            </ul>
+            <div class="iconsWrapper">
+                <%= link_to '',cloud_provider_instances_path(cp), :class => 'viewIcon' %>
+                <!-- <a href="" class="editIcon"></a> -->
+                <%= link_to '',edit_cloud_provider_path(cp), :class => 'editIcon' %>
+                <!-- <a href="" class="deleteIcon"></a> -->
+                <%= link_to '',cloud_provider_path(cp),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'deleteIcon' %>
+            </div>
+            <div class="bottomBox"></div>
+        </div>
+    </li>
+    <% end %>
+</ul>
+</div>

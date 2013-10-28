@@ -4,10 +4,16 @@ gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-
+gem 'best_in_place'
 gem 'mysql2'
-
-
+gem 'state_machine', '1.0.2'
+#gem  'sqlite3'
+#gem "therubyracer"
+#gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem "twitter-bootstrap-rails"
+gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'rb-readline', '~> 0.4.2'
+gem 'annotate', ">=2.5.0"
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -21,6 +27,21 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem "rails_config"
+gem "fog"
+gem 'capistrano', '~> 2.15'
+gem "rvm-capistrano"
+gem "delayed_job_active_record"
+gem 'rb-readline', '~> 0.4.2'
+gem 'nokogiri'
+gem "delayed_job"
+gem "daemons"
+group :development do
+  gem 'sextant', :git => 'git@github.com:vparihar01/sextant.git'
+end
+
+gem "rufus-scheduler"
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -36,3 +57,4 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+

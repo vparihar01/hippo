@@ -1,0 +1,510 @@
+@font-face {
+    font-family: 'elephantregular';
+    src: url('elephnt-webfont.eot');
+    src: url('elephnt-webfont.eot?#iefix') format('embedded-opentype'),
+    url('elephnt-webfont.woff') format('woff'),
+    url('elephnt-webfont.ttf') format('truetype'),
+    url('elephnt-webfont.svg#elephantregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+a:hover {
+    text-decoration: none;
+}
+h1 {
+    font-family: elephantregular;
+}
+ul, ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+html {
+    height: 100%;
+}
+.customBtn:hover{
+    background: #0061b1;
+    text-decoration: none;
+    color: #ffffff;
+}
+.contentBg a:visited {
+    text-decoration: none;
+    color: #ffffff;
+}
+body {
+    background: url("bodyBg.jpg") repeat-x;
+    height: 100%;
+}
+.bodyWrapper {
+    min-height: 100%;
+    position: relative;
+}
+.navbar-inner {
+    background: none;
+    border: none;
+}
+.outer-div {
+    padding-bottom: 90px;
+}
+.brand {
+    background: url("logo.png") no-repeat center;
+    width: 120px;
+    height: 60px;
+}
+.navbar .nav>li>a{
+    background: url("cloud.png") no-repeat center;
+    width: 120px;
+    height: 60px;
+    line-height: 70px;
+    text-align: center;
+    color: #000
+}
+.contentBg {
+    background: #d4ebfe;
+    text-align: center;
+    width: 500px;
+    height: 260px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+    margin: 120px auto 0;
+    padding: 10px 0;
+}
+.contentBg .form-horizontal, .newCloud .form-horizontal {
+    text-align: left;
+    width: 420px;
+    margin: 0 auto;
+}
+.form-horizontal label {
+    font-size: 18px;
+    line-height: 30px;
+}
+.form-horizontal input[type ="text"] {
+    width: 190px;
+    border-radius: 50px;
+    height: 40px;
+    border: none;
+    padding: 0 10px 0 20px;
+    line-height: 40px;
+}
+.contentBg .form-horizontal input[type = "submit"] {
+    background: #4077a4;
+    border: 1px solid #025aa2;
+    padding: 7px 16px;
+    border-radius: 5px;
+    color: #ffffff;
+    margin: 0 auto;
+    display: block;
+    width: 90px;
+    text-align: center;
+}
+footer {
+    background: #4077a4;
+    color: #ffffff;
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    bottom :40px;
+    text-align: center;
+    box-shadow: 1px 0px 2px 1px rgba(0, 0, 0, 0.2);
+   
+}
+footer p {
+    line-height: 50px;
+    font-size: 16px;
+    float: left;
+    padding-left: 20px;
+}
+footer a {
+    color: #023567;
+}
+footer ul {
+    float: right;
+}
+footer ul li {
+    float: left;
+    margin-right: 20px;
+    line-height: 46px;
+}
+.links {
+    display: block;
+    width: 50px;
+    height: 50px
+}
+.facebook {
+    background: url("social_icon_srpit.png") no-repeat -342px 0;
+}
+.twitter {
+    background: url("social_icon_srpit.png") no-repeat -294px 0;
+}
+.linkedIn {
+    background: url("social_icon_srpit.png") no-repeat -246px 0;
+}
+.planeImg {
+    background: url("planeBanner.png") no-repeat center right;
+    width: 300px;
+    height: 180px;
+    float: left;
+    margin-top: 47px;
+    z-index: 100;
+    position: relative;
+}
+.planeWrapper {
+    margin-top: 120px;
+}
+.planeWrapper .contentBg {
+    background: #d4ebfe;
+    text-align: center;
+    width: 500px;
+    height: 180px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+    margin: 40px auto 0;
+    padding: 10px 0;
+    float: left;
+    margin-left: -33px;
+    position: relative;
+}
+.customBtn {
+    background: #4077a4;
+    border: 1px solid #025aa2;
+    padding: 7px 16px;
+    border-radius: 5px;
+    color: #ffffff;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+.planeWrapper .customBtn {
+    width: 180px;
+    margin: 0 auto;
+}
+.dashboardWrapper > ul {
+    margin-top: 50px;
+}
+.dashboardWrapper > ul > li {
+    position: relative;
+    width: 250px;
+    height: 285px;
+    margin: 0 31px 60px 31px;
+    float: left;
+}
+.dashboardWrapper ul li .content {
+    height: 253px;
+    background: #d4ebfe;
+    box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.4);
+    position: relative;
+    border: 3px solid #ffffff;
+    border-radius: 10px 10px 0 0;
+}
+.bottomBox {
+    background: url("boxBottomBg.png") no-repeat center bottom;
+    bottom: -28px;
+    height: 30px;
+    left: -9px;
+    position: absolute;
+    width: 261px;
+    z-index: 1000;
+}
+.dashboardWrapper li .boxHeader {
+    background: url("boxHeadingBg.jpg") repeat-x;
+    margin: 0;
+    padding: 0 0 0 5px;
+    border-radius: 10px 10px 0 0;
+}
+.dashboardWrapper li h4 {
+    color: #ffffff;
+    font-family: elephantregular;
+    font-size: 17px;
+    margin: 0;
+    padding: 10px 0 10px 5px;
+    min-height: 25px;
+    font-weight: normal;
+    width: 190px;
+}
+.rackspaceRibbon {
+    background: url("rackspaceRibbon.png") no-repeat center;
+    width: 168px;
+    height: 171px;
+    position: absolute;
+    right: -48px;
+    top: -49px;
+}
+.awsRibbon {
+    background: url("awsRibbon.png") no-repeat center;
+    width: 168px;
+    height: 171px;
+    position: absolute;
+    right: -48px;
+    top: -49px;
+}
+.dashboardWrapper li ul {
+    margin-bottom: 40px;
+}
+.dashboardWrapper li li {
+    font-size: 20px;
+    margin: 10px 0 10px 5px;
+    font-family: airal;
+}
+.numbers {
+    float: right;
+    margin-right: 15px;
+    font-weight: bold;
+}
+.iconsWrapper a {
+    width: 60px;
+    height: 60px;
+    display: block;
+    float: left;
+    margin:  0 10px;
+}
+
+.viewIcon {
+    background: url("viewIcon.png") no-repeat center;
+}
+.editIcon {
+    background: url("editIcon.png") no-repeat center;
+}
+.deleteIcon {
+    background: url("deleteIcon.png") no-repeat center;
+}
+.headerWrapper {
+    margin-bottom: 50px;
+    border-bottom: 1px solid #4077a4;
+}
+.headerWrapper h1{
+    font-size: 32px;
+    font-family: elephantregular;
+    text-align: center;
+    float: left;
+    border: none;
+}
+.headerWrapper .customBtn {
+    float: right;
+    margin-top: 10px;
+    text-shadow: none;
+}
+/* select box custom css*/
+.selListWrap{
+    margin: 12px 0 15px;
+    position: relative;
+}
+select.cstSelList {
+    position: relative;
+    width: 160px;
+    height: 33px;
+    line-height: 24px;
+    z-index: 10;
+}
+span.selText {
+    float:right;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 223px;
+    height: 44px;
+    text-indent: 10px;
+    font-family: arial;
+    font-size: 14px;
+    color: #000000;
+    cursor: default;
+    background: url("selectBg.png") no-repeat scroll 0 0 transparent;
+    z-index: 1;
+    line-height: 40px;
+    padding-left: 10px;
+}
+/* select box css ends*/
+.controls {
+    position: relative;
+}
+select {
+    position: relative;
+}
+.newCloud {
+    background: url("cartoon.png") no-repeat 32px bottom;
+    min-height: 330px;
+}
+.form-actions {
+    background: none;
+    border: none;
+    padding: 0;
+}
+.back {
+    float: right;
+    margin-top: 10px;
+    width: 57px;
+    text-align: right;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    margin-left: 15px;
+}
+.back i {
+    margin-top: 3px;
+}
+.LV_validation_message {
+    display: none;
+}
+input.LV_invalid_field {
+    box-shadow: 0px 0px 8px 0px red;
+}
+.form-horizontal .control-label {
+    cursor: auto
+}
+.note {
+    background: url("stickyNote.png") no-repeat center bottom;
+    width: 290px;
+    height: 120px;
+    position: absolute;
+    top: -75px;
+    right: -270px;
+}
+.newCloud .controls {
+    position: relative;
+}
+.viewProvider {
+    background: url("viewCloud.png") no-repeat right bottom;
+    min-height: 470px;
+}
+.viewProvider .form-horizontal {
+    margin-left: 0;
+}
+.viewProvider .controls {
+    margin-left: 180px;
+}
+.dl-horizontal dd {
+    letter-spacing: 1px;
+}
+.alert-success {
+    color: #fff;
+    background-color: #7dc17e;
+    border-color: #d6e9c6;
+}
+.listHeading li{
+    font-weight: bold;
+    float: left;
+}
+.listId {
+    width: 50px;
+}
+.instanceId {
+    width: 100px;
+}
+.listState {
+    width: 90px;
+}
+.listFlavour {
+    width: 80px;
+}
+.listName {
+    width: 100px;
+}
+.listPrivateIP {
+    width: 145px;
+}
+.listPublicIP {
+    width: 120px;
+}
+.listDetails {
+    width: 250px;
+}
+.listAction {
+    width: 100px;
+}
+.cloudList li{
+    font-weight: bold;
+    float: left;
+    padding-top: 22px;
+    min-height: 40px;
+    cursor: pointer;
+    text-align: center;
+    word-break: break-word;
+    margin-bottom: 20px;
+}
+.cloudList ul {
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+}
+.cloudList ul:hover {
+    min-height: 60px;
+    border-radius: 5px;
+    background: #4b85bf;
+    color: #ffffff;
+}
+.cloudList .listHeading {
+    box-shadow: none;
+}
+.cloudList .listHeading li{
+    min-height: 0;
+    box-shadow: none;
+    margin: 0;
+}
+.cloudList .listHeading:hover {
+    min-height: 0;
+    border-radius: 5px;
+    background: none;
+    color: #000000;
+}
+.imageList, .flavorList {
+    margin-bottom: 30px;
+}
+.imageWrapper .imageList li {
+    float: left;
+    margin: 0 20px 20px 0;
+}
+.flavorList li{
+    float: left;
+    margin: 0 50px 20px 0;
+}
+input[type="radio"]{
+    margin: 0;
+}
+.newInstancePage .form-horizontal .control-group, .newCloud .form-horizontal .control-group, .progressWrapper {
+    background: #d4ebfe;
+    padding: 10px 0;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+}
+a i {
+    float: left;
+}
+.progressWrapper {
+    padding: 10px;
+    font-weight: bold;
+    width: 400px;
+    margin-left: 50px;
+}
+.viewInstance {
+    background: url("cartoon2.png") no-repeat right bottom;
+    min-height: 600px;
+}
+.viewInstance dl {
+    width: 400px;
+}
+.viewInstance ul {
+    width: 400px;
+    margin-left: 180px;
+}
+.viewInstance ul li{
+    float: left;
+    margin-right: 5px;
+}
+.viewInstance .customBtn {
+    padding: 4px 12px;
+    text-shadow: none;
+    font-weight: normal;
+    font-size: 14px;
+}
+.viewInstance .dl-horizontal dt {
+    width: 140px;
+}
+.viewInstance .dl-horizontal dd {
+    width: 260px;
+    text-shadow: none;    
+    font-size: 14px;
+    font-weight: normal;
+}
+.cloudList > li {
+    padding: 0;
+}
+.loginScreen {
+    background: url("cartoon3.png") no-repeat right bottom;
+}

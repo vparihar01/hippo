@@ -1,0 +1,34 @@
+<div class="viewProvider">
+<%- model_class = CloudProvider -%>
+<div class="headerWrapper clearfix">
+<h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+
+<%= link_to "<i class='icon-arrow-left icon-white'></i> BACK".html_safe,
+cloud_providers_path, :class => 'customBtn back' %>
+
+</div>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:key) %>:</strong></dt>
+  <dd><%= @cloud_provider.key %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @cloud_provider.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:provider) %>:</strong></dt>
+  <dd><%= @cloud_provider.type %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:secret) %>:</strong></dt>
+  <dd><%= @cloud_provider.secret %></dd>
+</dl>
+
+<div class="form-actions form-horizontal">
+<div class="control-group">
+    <label class="control-label"></label>
+    <div class="controls">
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_cloud_provider_path(@cloud_provider), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              cloud_provider_path(@cloud_provider),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+        </div>
+</div>
+</div>

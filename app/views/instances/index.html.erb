@@ -1,0 +1,30 @@
+<%- model_class = Instance -%>
+<div class="headerWrapper clearfix">
+
+<h1><%= @instances.last.cloud_provider.name.split(" ").first%>'s <%= " "%><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+
+<%= link_to "<i class='icon-arrow-left icon-white'></i> BACK".html_safe,
+cloud_providers_path, :class => 'customBtn back' %>
+<%= link_to "Create Instance",new_cloud_provider_instance_path(@provider), :class => 'btn customBtn pull-right' %>
+
+</div>
+<ul class="cloudList">
+    <li>
+        <ul class="listHeading clearfix">
+            <li class="listId"><%= model_class.human_attribute_name(:id) %></li>
+            <li class="instanceId"><%= model_class.human_attribute_name(:instance_id) %></li>
+            <li class="listState"><%= model_class.human_attribute_name(:state) %></li>
+            <li class="listFlavour"><%= model_class.human_attribute_name(:flavor_id) %></li>
+            <li class="listName"><%= model_class.human_attribute_name(:name) %></li>
+            <li class="listPrivateIP"><%= model_class.human_attribute_name(:private_ip) %></li>
+            <li class="listPublicIP"><%= model_class.human_attribute_name(:public_ip) %></li>
+            <li class="listDetails"><%= model_class.human_attribute_name(:created_at) %></li>
+        </ul>
+    </li>
+    <% @instances.each do |instance| %>
+    <li>
+        <%= link_to "<ul class='clearfix'><li class='listId'>#{instance.id}</li><li class='instanceId'>#{instance.instance_id }</li><li class='listState'>#{instance.state}</li><li class='listFlavour'>#{instance.flavor_id}</li><li class='listName'>#{instance.name}</li><li class='listPrivateIP'>#{instance.private_ip}</li><li class='listPublicIP'>#{instance.public_ip}</li><li class='listDetails'>#{l instance.created_at}</li></ul>".html_safe, cloud_provider_instance_path(@provider,instance) %>
+               
+    </li>
+    <% end %>
+</ul>
